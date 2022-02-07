@@ -1,0 +1,35 @@
+.home-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.movie-image {
+    object-fit: contain;
+    /*width: 100%;*/
+    max-height: 350px;
+    border: solid 1px darkred;
+    transition: transform 300ms;
+    margin: 15px;
+}
+
+.movie-image:hover {
+    transform: scale(1.15);
+}
+
+
+@media screen and (max-width: 960px) {
+    /*
+    .home-container {
+        flex-wrap: nowrap;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        padding: 20px;
+    }
+
+     */
+
+    .movie-image {
+        max-height: 200px;
+    }
+}
