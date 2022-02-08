@@ -32,7 +32,7 @@ const Home = ({fetchUrl}) => {
         });
 
         return () => abortCont.abort();
-    }, [fetchUrl]);
+    }, [fetchUrl,instance]);
 
     return (
         <div>
