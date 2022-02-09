@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo, useState} from 'react';
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -9,12 +9,17 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 
 import requests from "./requestsTest";
+import {UserContext} from "./utility/UserContext";
 
 
 const App = () => {
+    const [savedUser, setSavedUser] = useState(localStorage.getItem("user"));
+
+
   return (
       <Router>
         <div className="App">
+            <UserContext.Provider value={{savedUser, setSavedUser}}>
             <Navbar />
             <div className='content'>
                 <Switch>
@@ -35,6 +40,7 @@ const App = () => {
                     </Route>
                 </Switch>
             </div>
+            </UserContext.Provider>
         </div>
       </Router>
   );

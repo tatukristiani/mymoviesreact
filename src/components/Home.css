@@ -6,7 +6,6 @@
 
 .movie-image {
     object-fit: contain;
-    /*width: 100%;*/
     max-height: 350px;
     border: solid 1px darkred;
     transition: transform 300ms;
@@ -14,7 +13,10 @@
 }
 
 .movie-image:hover {
-    transform: scale(1.15);
+    transform: scale(1.05, 1.05);
+    box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -16px, rgb(0 0 0 / 72%) 0px 30px 22px -10px;
+    transition-property: transform, box-shadow;
+
 }
 
 

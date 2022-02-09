@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import './Navbar.css';
+import {UserContext} from "../utility/UserContext";
 
 const Navbar = () => {
+    const {savedUser, setSavedUser} = useContext(UserContext);
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
+
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
@@ -17,6 +20,11 @@ const Navbar = () => {
             setButton(true);
         }
     };
+
+    const logout = () => {
+        localStorage.clear()
+        setSavedUser(null);
+    }
 
     useEffect(() => {
         showButton();
@@ -50,13 +58,20 @@ const Navbar = () => {
                                Search
                             </Link>
                         </li>
-                        <li className='nav-item'>
-                            <Link to='/login' className='nav-links-mobile' onClick={closeMobileMenu}>
-                                Login/Register
-                            </Link>
-                        </li>
+                        {savedUser &&
+                            <li className='nav-item'>
+                                <Link to='/movies' className='nav-links' onClick={closeMobileMenu}>
+                                    {savedUser}
+                                </Link>
+                            </li>
+                        }
                     </ul>
-                    {button && <Button buttonStyle='btn--outline'>Login/Register</Button>}
+                    {button && !savedUser ? (
+                        <Button to='/login' buttonStyle='btn--outline'>Login/Register</Button>
+                    ) : (
+                        <Button to='/' onClick={logout} buttonStyle='btn--outline'>Logout</Button>
+                    )}
+
                 </div>
             </nav>
         </>

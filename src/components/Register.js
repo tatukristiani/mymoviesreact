@@ -5,7 +5,9 @@ import './Register.css';
 
 import {Link} from "react-router-dom";
 
-const REGISTER_URL = '/register'
+const REGISTER_URL = '/register';
+const REGISTER = 'Register';
+const CREATING_ACCOUNT = 'Creating Account...';
 
 const Register = () => {
     const emailRef = useRef();
@@ -16,17 +18,16 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [pending, setPending] = useState(false);
-    const [register, setRegister] = useState('Register');
+    const [register, setRegister] = useState(REGISTER);
 
-    const account = {
-        username: user,
-        password: pwd
-    }
 
     // Handles register, doesn't use jsonwebtoken yet.
     const handleSubmit = async (e) => {
         e.preventDefault();
         setPending(true);
+
+        const account = {username: user, password: pwd, email: email};
+
         try {
             const response = await axios.post(REGISTER_URL, account);
             console.log(JSON.stringify(response?.data));
@@ -60,11 +61,12 @@ const Register = () => {
         setErrMsg('');
     }, [user, pwd, email])
 
+    // Sets the Register text on the button to Creating Account for clarity.
     useEffect(() => {
         if(pending) {
-            setRegister("Creating account...")
+            setRegister(CREATING_ACCOUNT)
         } else {
-            setRegister("Register")
+            setRegister(REGISTER)
         }
     }, [pending])
 
@@ -79,7 +81,7 @@ const Register = () => {
                 </div>
                 <div className='control block-cube block-input'>
                     <input
-                        placeholder='Email address'
+                        placeholder='Enter Email Address'
                         type="email"
                         id="email"
                         ref={emailRef}
@@ -100,7 +102,7 @@ const Register = () => {
                 </div>
                 <div className='control block-cube block-input'>
                     <input
-                        placeholder='Username'
+                        placeholder='Enter Username'
                         type="text"
                         id="username"
                         autoComplete="off"
@@ -119,7 +121,7 @@ const Register = () => {
                     </div>
                 </div>
                 <div className='control block-cube block-input'>
-                    <input placeholder='Password'
+                    <input placeholder='Enter Password'
                            type="password"
                            id="password"
                            onChange={(e) => setPwd(e.target.value)}

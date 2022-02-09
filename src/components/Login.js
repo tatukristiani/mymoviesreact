@@ -1,11 +1,14 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef, useContext} from 'react';
 import axios from '../api/axios';
 import './Login.css';
 import {Link} from "react-router-dom";
+import {UserContext} from "../utility/UserContext";
 
 const LOGIN_URL = '/login'
 
 const Login = () => {
+    const {savedUser, setSavedUser} = useContext(UserContext);
+
     const userRef = useRef();
     const errRef = useRef();
 
@@ -33,6 +36,9 @@ const Login = () => {
             console.log(JSON.stringify(response?.data));
             setUser('');
             setPwd('');
+            localStorage.setItem("user", account.username);
+            setSavedUser(localStorage.getItem("user"));
+            console.log("User saved: " + savedUser);
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -53,6 +59,7 @@ const Login = () => {
     // On load focus on username field.
     useEffect(() => {
         userRef.current.focus();
+        console.log(savedUser);
         },[])
 
 
@@ -68,9 +75,9 @@ const Login = () => {
             setLogin("Sign In");
         }
     }, [pending])
+
     return (
         <section>
-            {/*<p ref={errRef} className={errMsg ? "error-message" : "off-screen"} aria-live="assertive">{errMsg}</p>*/}
             <form autoComplete='off' className='form' onSubmit={handleSubmit}>
                 <p ref={errRef} className={errMsg ? "error-message" : "off-screen"} aria-live="assertive">{errMsg}</p>
                 <div className='control'>

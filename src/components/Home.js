@@ -32,11 +32,10 @@ const Home = ({fetchUrl}) => {
         });
 
         return () => abortCont.abort();
-    }, [fetchUrl,instance]);
+    }, []);
 
     return (
-        <div>
-            <h1>Home</h1>
+        <>
             <div className="home-container">
                 {movies.map((movie => (
                         <img
@@ -46,7 +45,7 @@ const Home = ({fetchUrl}) => {
                             alt={movie.name}/>
                     )))}
             </div>
-        </div>
+        </>
     );
 };
 
