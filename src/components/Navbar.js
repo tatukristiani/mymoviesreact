@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
-import './Navbar.css';
+import '../styles/Navbar.css';
 import {UserContext} from "../utility/UserContext";
 
 const Navbar = () => {

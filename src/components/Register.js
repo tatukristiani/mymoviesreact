@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import axios from '../api/axios';
-import './Login.css';
-import './Register.css';
+import '../styles/Login.css';
+import '../styles/Register.css';
 
 import {Link} from "react-router-dom";
 
