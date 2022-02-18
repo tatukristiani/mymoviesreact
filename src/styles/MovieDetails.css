@@ -1,0 +1,37 @@
+.movie-detail-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.video-container {
+    margin: 50px;
+    text-align: center;
+}
+
+.image-container {
+    margin: 20px;
+}
+
+.movie-details {
+    width: 60%;
+    margin-top: 40px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.movie-details-image {
+    object-fit: contain;
+    max-height: 350px;
+    border: solid 1px darkred;
+    transition: transform 300ms;
+    margin: 15px;
+}
+
+
+

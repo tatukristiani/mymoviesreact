@@ -6,6 +6,7 @@ import YoutubeVideo from "../utility/YoutubeVideo";
 import {Button} from "./Button";
 import axiosOwn from "../api/axios";
 import convertJson from "../utility/JsonConverter";
+import '../styles/MovieDetails.css';
 
 
 const ADD_URL = "/movies";
@@ -96,15 +97,26 @@ const MovieDetails = () => {
     return(
         <>
             <div className='movie-info-container'>
-                <YoutubeVideo embedId={trailer}/>
-                <h1>{movie.title}</h1>
-                <p>{movie.overview}</p>
-                <img key={movie.id}
-                     className="movie-image"
-                     src={`${POSTER_URL}${movie.poster_path}`}
-                     alt={movie.title}
-                />
-                <Button onClick={handleAddMovie} buttonStyle='btn--outline'>Add to My Movies</Button>
+                <div className='video-container'>
+                    <YoutubeVideo embedId={trailer}/>
+                </div>
+                <div className='movie-detail-container'>
+                    <div className='image-container'>
+                        <img key={movie.id}
+                             className="movie-details-image"
+                             src={`${POSTER_URL}${movie.poster_path}`}
+                             alt={movie.title}
+                        />
+                    </div>
+                    <div className='movie-details'>
+                        <h1>{movie.title}</h1>
+                        <p>{movie.overview}</p>
+                        <p>{movie.runtime}</p>
+                        <p>{movie.release_date}</p>
+                        <p>{movie.genres ? convertJson(movie.genres) : ''}</p>
+                        <Button onClick={handleAddMovie} buttonStyle='btn--details'>Add to My Movies</Button>
+                    </div>
+                </div>
             </div>
         </>
     )

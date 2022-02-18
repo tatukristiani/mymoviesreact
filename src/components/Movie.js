@@ -7,13 +7,13 @@ const Movie = ({movie}) => {
     console.log("Movie Object:" + movie);
     return(
         <>
-            <img key={movie.id}
-                 className="movie-image"
-                 src={`${POSTER_URL}${movie.poster_path}`}
-                 alt={movie.title}
-                 />
-            <Link to={`/movies/${movie.id}`}>Hello</Link>
-
+            <Link to={`/movies/${movie.id}`}>{
+                <img key={movie.id}
+                     className="movie-image"
+                     src={`${POSTER_URL}${movie.poster_path}`}
+                     alt={movie.title}
+                />
+            }</Link>
         </>
     )
 }
