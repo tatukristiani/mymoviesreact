@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 const Movie = ({movie}) => {
 
-    console.log(movie);
+    console.log("Movie Object:" + movie);
     return(
         <>
             <img key={movie.id}

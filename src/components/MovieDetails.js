@@ -15,19 +15,19 @@ const MovieDetails = () => {
     const [movie, setMovie] = useState({});
     const [trailer, setTrailer] = useState('');
 
-/*
-    function convertGenreToString(jsonGenre) {
-        let string = "";
-        for(let i = 0; i < jsonGenre.length; i++) {
-            if(i === 0) {
-                string = jsonGenre[i].name;
-            } else {
-                string += ", " + jsonGenre[i].name;
+    /*
+        function convertGenreToString(jsonGenre) {
+            let string = "";
+            for(let i = 0; i < jsonGenre.length; i++) {
+                if(i === 0) {
+                    string = jsonGenre[i].name;
+                } else {
+                    string += ", " + jsonGenre[i].name;
+                }
             }
+            return string;
         }
-        return string;
-    }
-*/
+    */
     const handleAddMovie = async () => {
 
         if (movie != null && movie.title) {
@@ -47,7 +47,7 @@ const MovieDetails = () => {
         console.log("Object to send: " + movieToSend);
         try {
             const response = await axiosOwn.post(ADD_URL, movieToSend);
-            console.log(JSON.stringify(response?.data));
+           console.log(response?.data);
         } catch (err) {
             if (!err?.response) {
                 alert('No Server Response');
@@ -63,35 +63,35 @@ const MovieDetails = () => {
         }
     }
 
+    // Used to get the trailer.
     useEffect(() => {
         const abortCont = new AbortController();
 
-        axios.post(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=ac4ead2bbde49f3cb342413c09f6d25a`, {signal: abortCont.signal})
+        // Getting the Youtube trailer.
+        axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=ac4ead2bbde49f3cb342413c09f6d25a`, {signal: abortCont.signal})
             .then(res => {
                 let data = res.data.results; // Data is in object format, data is an array of objects.
                 let i = 0;
-                while(!data[i].name.toUpperCase().includes("TRAILER")) {
-                    //console.log(data[i].name);
+                while(trailer === '' && i < data.length) {
+                    if(data[i].name.toUpperCase().includes("TRAILER")) {
+                        setTrailer(data[i].key);
+                    }
                     i++;
                 }
-                //console.log(data[i].name);
-                setTrailer(data[i].key);
-                //console.log("Res: " + data + ", Real: " + trailer);
             })
         return () => abortCont.abort();
     }, [id, trailer]);
 
+    // Used to get information about the movie.
     useEffect(() => {
         const abortCont = new AbortController();
 
         axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=ac4ead2bbde49f3cb342413c09f6d25a&append_to_response=videos`, {signal: abortCont.signal})
             .then(res => {
                 setMovie(res.data); // data here is an object.
-                console.log(movie);
             })
         return () => abortCont.abort();
     }, [])
-
 
     return(
         <>
@@ -111,3 +111,7 @@ const MovieDetails = () => {
 }
 
 export default MovieDetails;
+
+
+
+

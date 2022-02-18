@@ -26,7 +26,7 @@ const Home = ({fetchUrl}) => {
         });
 
         return () => abortCont.abort();
-    }, []);
+    }, [fetchUrl]);
 
     return (
         <>
