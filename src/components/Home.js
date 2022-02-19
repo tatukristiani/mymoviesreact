@@ -17,8 +17,9 @@ const Home = ({fetchUrl}) => {
             setMovies(request.data.results);
             return request;
         }
+
         fetchData().then(res => console.log(res)).catch(err => {
-            if(err.name === "AbortError") {
+            if (err.name === "AbortError") {
                 console.log("Fetch aborted");
             } else {
                 console.log(err);

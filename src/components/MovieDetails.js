@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import POSTER_URL from "../api/poster";
@@ -7,60 +7,55 @@ import {Button} from "./Button";
 import axiosOwn from "../api/axios";
 import convertJson from "../utility/JsonConverter";
 import '../styles/MovieDetails.css';
+import {UserContext} from "../utility/UserContext";
 
 
 const ADD_URL = "/movies";
 
 const MovieDetails = () => {
-    const {id} = useParams();
+    const {savedUser} = useContext(UserContext);
+    const {id} = useParams(); // Id for the movie
     const [movie, setMovie] = useState({});
-    const [trailer, setTrailer] = useState('');
+    const [trailer, setTrailer] = useState(''); // Youtube trailer path.
 
-    /*
-        function convertGenreToString(jsonGenre) {
-            let string = "";
-            for(let i = 0; i < jsonGenre.length; i++) {
-                if(i === 0) {
-                    string = jsonGenre[i].name;
-                } else {
-                    string += ", " + jsonGenre[i].name;
-                }
-            }
-            return string;
-        }
-    */
     const handleAddMovie = async () => {
-
+        // Confirm that we have actual data to send.
         if (movie != null && movie.title) {
             console.log("Movie is good to go")
-        }
 
-        const movieToSend = {
-            title: movie.title,
-            tmdbid: movie.id,
-            posterpath: movie.poster_path,
-            date: movie.release_date,
-            runtime: movie.runtime,
-            overview: movie.overview,
-            trailerid: trailer,
-            genres: convertJson(movie.genres)
-        };
-        console.log("Object to send: " + movieToSend);
-        try {
-            const response = await axiosOwn.post(ADD_URL, movieToSend);
-           console.log(response?.data);
-        } catch (err) {
-            if (!err?.response) {
-                alert('No Server Response');
-            } else if (err.response?.status === 403) {
-                console.log(err.response?.data.error);
-                alert(err.response?.data.error);
-            } else if (err.response?.status === 500) {
-                alert('Internal problems. Apologies.')
-            } else {
-                alert('Register Failed.')
+
+            const dataToAPI = {
+                title: movie.title,
+                tmdbid: movie.id,
+                posterpath: movie.poster_path,
+                date: movie.release_date,
+                runtime: movie.runtime,
+                overview: movie.overview,
+                trailerid: trailer,
+                genres: convertJson(movie.genres),
+                user: savedUser
+            };
+            console.log("Object to send: " + dataToAPI);
+            try {
+                const response = await axiosOwn.post(ADD_URL, dataToAPI);
+                console.log(response?.status);
+                if(response.status === 201) {
+                    alert("Movie added successfully.");
+                }
+            } catch (err) {
+                if (!err?.response) {
+                    alert('No Server Response');
+                } else if (err.response?.status === 409) {
+                    alert(err.response?.data.message);
+                } else if (err.response?.status === 500) {
+                    alert("Internal errors!");
+                } else if (err.response?.status === 400) {
+                    alert(err.response?.data.message);
+                }
+                alert.current.focus();
             }
-            alert.current.focus();
+        } else {
+            console.log("Movie is not valid!")
         }
     }
 
@@ -114,7 +109,7 @@ const MovieDetails = () => {
                         <p>{movie.runtime}</p>
                         <p>{movie.release_date}</p>
                         <p>{movie.genres ? convertJson(movie.genres) : ''}</p>
-                        <Button onClick={handleAddMovie} buttonStyle='btn--details'>Add to My Movies</Button>
+                        {savedUser && <Button onClick={handleAddMovie} buttonStyle='btn--details'>Add to My Movies</Button>}
                     </div>
                 </div>
             </div>

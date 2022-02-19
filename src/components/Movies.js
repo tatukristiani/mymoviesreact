@@ -6,7 +6,8 @@ const Movies = () => {
 
     useEffect(() => {
         // Fetch all movies from database.
-    }, [])
+
+    }, [movies])
 
     return (
         <div className='movies-container'>
