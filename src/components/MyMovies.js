@@ -32,7 +32,7 @@ const MyMovies = () => {
                     )))}
                 </div>
             ) : (
-                <h1>You must be Signed In to view your movies.</h1>
+                <h1 className='my-movies-header'>You must be Signed In to view your movies.</h1>
             )
             }
         </div>

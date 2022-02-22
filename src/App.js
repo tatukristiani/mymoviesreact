@@ -6,6 +6,7 @@ import MyMovies from "./components/MyMovies";
 import Search from "./components/Search";
 import Register from "./components/Register";
 import MovieDetails from "./components/MovieDetails";
+import Footer from "./components/Footer";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
@@ -19,11 +20,11 @@ const App = () => {
     const [savedUser, setSavedUser] = useState(null);
     const [savedUserMovies, setSavedUserMovies] = useState([]);
 
+    // Effect used when savedUser is changed. Fetches the currently logged-in users movies and saves them to savedUserMovies.
     useEffect( () => {
         const abortCont = new AbortController();
 
         async function fetchUserMovies() {
-            // Fetch users movies.
             const request = await axios.get(requests.fetchMyMovies + `?user=` + savedUser, {signal: abortCont.signal});
             console.log(request.data);
             setSavedUserMovies(request.data);
@@ -71,6 +72,7 @@ const App = () => {
                         </Route>
                     </Switch>
                 </div>
+                    <Footer />
                 </UserMoviesContext.Provider>
             </UserContext.Provider>
         </div>
