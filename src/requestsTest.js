@@ -15,7 +15,8 @@ const requests = {
 */
 const requests = {
     fetchTrending: `/home`,
-    fetchMyMovies: `/movies`
+    fetchMyMovies: `/movies?user=`,
+    search: `/movies/search?name=`
 }
 
 export default requests;

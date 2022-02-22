@@ -25,7 +25,7 @@ const App = () => {
         const abortCont = new AbortController();
 
         async function fetchUserMovies() {
-            const request = await axios.get(requests.fetchMyMovies + `?user=` + savedUser, {signal: abortCont.signal});
+            const request = await axios.get(requests.fetchMyMovies + savedUser, {signal: abortCont.signal});
             console.log(request.data);
             setSavedUserMovies(request.data);
         }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import '../styles/Navbar.css';
 import {UserContext} from "../utility/UserContext";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
     const {savedUser, setSavedUser} = useContext(UserContext);
