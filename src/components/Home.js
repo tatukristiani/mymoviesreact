@@ -33,7 +33,7 @@ const Home = ({fetchUrl}) => {
         <>
             <div className="home-container">
                 {movies.map((movie => (
-                    <Movie key={movie.id} movie={movie}/>
+                    <Movie key={movie.id} movie={movie} databaseData={false}/>
                     )))}
             </div>
         </>

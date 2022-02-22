@@ -36,8 +36,9 @@ const Login = () => {
             console.log(JSON.stringify(response?.data));
             setUser('');
             setPwd('');
-            localStorage.setItem("user", account.username);
-            setSavedUser(localStorage.getItem("user"));
+            //localStorage.setItem("user", account.username);
+            //setSavedUser(localStorage.getItem("user"));
+            setSavedUser(account.username);
             console.log("User saved: " + savedUser);
         } catch (err) {
             if (!err?.response) {

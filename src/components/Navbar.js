@@ -22,7 +22,7 @@ const Navbar = () => {
     };
 
     const logout = () => {
-        localStorage.clear()
+        //localStorage.clear()
         setSavedUser(null);
     }
 
