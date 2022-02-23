@@ -66,12 +66,12 @@ const Navbar = () => {
                             {savedUser ? (
                                 <Link to='/' className='nav-links-mobile' onClick={logout}>Logout</Link>
                             ) : (
-                                <Link to='/login' className='nav-links-mobile' onClick={closeMobileMenu}>Login</Link>
+                                <Link to='/login' className='nav-links-mobile' onClick={closeMobileMenu}>Sign In</Link>
                             )}
 
                         </li>
                     </ul>
-                    {button && !savedUser &&  <Button to='/login' buttonStyle='btn--outline'>Login</Button> }
+                    {button && !savedUser &&  <Button to='/login' buttonStyle='btn--outline'>Sign In</Button> }
                     {button && savedUser && <Button to='/' onClick={logout} buttonStyle='btn--outline'>Logout</Button>}
                 </div>
             </nav>
