@@ -52,9 +52,6 @@ const App = () => {
                 <Navbar />
                 <div className='content'>
                     <Switch>
-                        <Route exact path='/'>
-                            <Home fetchUrl={requests.fetchTrending}/>
-                        </Route>
                         <Route exact path='/movies'>
                             <MyMovies />
                         </Route>
@@ -69,6 +66,9 @@ const App = () => {
                         </Route>
                         <Route path='/register'>
                             <Register/>
+                        </Route>
+                        <Route path='/'>
+                            <Home fetchUrl={requests.fetchTrending}/>
                         </Route>
                     </Switch>
                 </div>
