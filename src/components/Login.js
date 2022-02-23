@@ -1,4 +1,5 @@
 import React, {useEffect, useState, useRef, useContext} from 'react';
+import { useHistory } from "react-router-dom";
 import axios from '../api/axios';
 import '../styles/Login.css';
 import {Link} from "react-router-dom";
@@ -8,7 +9,7 @@ const LOGIN_URL = '/login'
 
 const Login = () => {
     const {savedUser, setSavedUser} = useContext(UserContext);
-
+    const history = useHistory();
     const userRef = useRef();
     const errRef = useRef();
 
@@ -40,6 +41,7 @@ const Login = () => {
             //setSavedUser(localStorage.getItem("user"));
             setSavedUser(account.username);
             console.log("User saved: " + savedUser);
+            history.push("/");
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');

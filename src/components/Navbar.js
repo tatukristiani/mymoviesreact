@@ -1,9 +1,8 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import '../styles/Navbar.css';
 import {UserContext} from "../utility/UserContext";
-import SearchBar from "./SearchBar";
 
 const Navbar = () => {
     const {savedUser, setSavedUser} = useContext(UserContext);
@@ -25,11 +24,8 @@ const Navbar = () => {
     const logout = () => {
         //localStorage.clear()
         setSavedUser(null);
+        closeMobileMenu();
     }
-
-    useEffect(() => {
-        showButton();
-    }, []);
 
     window.addEventListener('resize', showButton);
 
@@ -66,13 +62,17 @@ const Navbar = () => {
                                 </Link>
                             </li>
                         }
-                    </ul>
-                    {button && !savedUser ? (
-                        <Button to='/login' buttonStyle='btn--outline'>Login/Register</Button>
-                    ) : (
-                        <Button to='/' onClick={logout} buttonStyle='btn--outline'>Logout</Button>
-                    )}
+                        <li className='nav-item'>
+                            {savedUser ? (
+                                <Link to='/' className='nav-links-mobile' onClick={logout}>Logout</Link>
+                            ) : (
+                                <Link to='/login' className='nav-links-mobile' onClick={closeMobileMenu}>Login</Link>
+                            )}
 
+                        </li>
+                    </ul>
+                    {button && !savedUser &&  <Button to='/login' buttonStyle='btn--outline'>Login</Button> }
+                    {button && savedUser && <Button to='/' onClick={logout} buttonStyle='btn--outline'>Logout</Button>}
                 </div>
             </nav>
         </>
