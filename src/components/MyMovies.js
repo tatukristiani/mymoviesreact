@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Movie from "./Movie";
 import {UserContext} from "../utility/UserContext";
-import convertMinutesToString from "../utility/convertMinutesToString";
+import convertMinutesToString from "../utility/ConvertMinutesToString";
 import {UserMoviesContext} from "../utility/UserMoviesContext";
 import '../styles/MyMovies.css';
 

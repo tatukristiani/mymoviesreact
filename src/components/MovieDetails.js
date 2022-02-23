@@ -8,6 +8,8 @@ import axiosOwn from "../api/axios";
 import convertJson from "../utility/JsonConverter";
 import '../styles/MovieDetails.css';
 import {UserContext} from "../utility/UserContext";
+import DateFormatter from "../utility/DateFormatter";
+import {UserMoviesContext} from "../utility/UserMoviesContext";
 
 
 const ADD_URL = "/movies";
@@ -17,6 +19,8 @@ const MovieDetails = () => {
     const {id} = useParams(); // Id for the movie
     const [movie, setMovie] = useState({});
     const [trailer, setTrailer] = useState(''); // Youtube trailer path.
+    const {savedUserMovies} = useContext(UserMoviesContext);
+    const [watched, setWatched] = useState(false);
 
     const handleAddMovie = async () => {
         // Confirm that we have actual data to send.
@@ -89,6 +93,13 @@ const MovieDetails = () => {
         return () => abortCont.abort();
     }, [])
 
+    useEffect(() => {
+        savedUserMovies.forEach(m => {
+            if((movie.title === m.title && movie.tmdbid === m.tmdbid) || (movie.title === m.title && movie.id === m.tmdbid)) {
+                setWatched(true);
+            }
+        })
+    })
     return(
         <>
             <div className='movie-info-container'>
@@ -106,10 +117,11 @@ const MovieDetails = () => {
                     <div className='movie-details'>
                         <h1>{movie.title}</h1>
                         <p>{movie.overview}</p>
-                        <p>{movie.runtime}</p>
-                        <p>{movie.release_date}</p>
-                        <p>{movie.genres ? convertJson(movie.genres) : ''}</p>
-                        {savedUser && <Button onClick={handleAddMovie} buttonStyle='btn--details'>Add to My Movies</Button>}
+                        <p>Runtime: {movie.runtime} min</p>
+                        <p>Release date: {DateFormatter(movie.release_date)}</p>
+                        <p>Genres: {movie.genres ? convertJson(movie.genres) : ''}</p>
+                        {savedUser && !watched  && <Button onClick={handleAddMovie} buttonStyle='btn--details'>Add to My Movies</Button>}
+                        {savedUser && watched && <Button onClick={() => console.log("remove movie")} buttonStyle='btn--details'>Remove</Button>}
                     </div>
                 </div>
             </div>

@@ -12,7 +12,15 @@
     margin: 15px;
 }
 
-.movie-image:hover {
+.movie-image-seen {
+    object-fit: contain;
+    max-height: 350px;
+    border: solid 1px green;
+    transition: transform 300ms;
+    margin: 15px;
+}
+
+.movie-image:hover, .movie-image-seen:hover {
     transform: scale(1.05, 1.05);
     box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -16px, rgb(0 0 0 / 72%) 0px 30px 22px -10px;
     transition-property: transform, box-shadow;
@@ -30,7 +38,7 @@
 
      */
 
-    .movie-image {
+    .movie-image, .movie-image-seen {
         max-height: 200px;
     }
 }
