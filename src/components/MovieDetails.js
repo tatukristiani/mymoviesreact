@@ -10,6 +10,7 @@ import '../styles/MovieDetails.css';
 import {UserContext} from "../utility/UserContext";
 import DateFormatter from "../utility/DateFormatter";
 import {UserMoviesContext} from "../utility/UserMoviesContext";
+import requests from "../requestsTest";
 
 
 const ADD_URL = "/movies";
@@ -19,7 +20,7 @@ const MovieDetails = () => {
     const {id} = useParams(); // Id for the movie
     const [movie, setMovie] = useState({});
     const [trailer, setTrailer] = useState(''); // Youtube trailer path.
-    const {savedUserMovies} = useContext(UserMoviesContext);
+    const {savedUserMovies, setSavedUserMovies} = useContext(UserMoviesContext);
     const [watched, setWatched] = useState(false);
 
     const handleAddMovie = async () => {
@@ -45,6 +46,7 @@ const MovieDetails = () => {
                 console.log(response?.status);
                 if(response.status === 201) {
                     alert("Movie added successfully.");
+                    await fetchMyMovies();
                 }
             } catch (err) {
                 if (!err?.response) {
@@ -60,6 +62,23 @@ const MovieDetails = () => {
             }
         } else {
             console.log("Movie is not valid!")
+        }
+    }
+
+    const handleRemoveMovie = async () => {
+        try {
+            const response = await axiosOwn.delete(requests.deleteMovie + "?user=" + savedUser + "&title=" + movie.title + "&tmdbid=" + movie.id);
+            if(response.status === 200) {
+                alert("Movie removed successfully.");
+                await fetchMyMovies();
+                setWatched(false);
+            }
+        } catch (err) {
+            if (!err?.response) {
+                alert('No Server Response');
+            } else if(err.response?.status === 404) {
+                alert("Problems when removing movie.");
+            }
         }
     }
 
@@ -91,8 +110,9 @@ const MovieDetails = () => {
                 setMovie(res.data); // data here is an object.
             })
         return () => abortCont.abort();
-    }, [])
+    })
 
+    // Goes through all the users movies they've added to their movies and checks if this movie is in there.
     useEffect(() => {
         savedUserMovies.forEach(m => {
             if((movie.title === m.title && movie.tmdbid === m.tmdbid) || (movie.title === m.title && movie.id === m.tmdbid)) {
@@ -100,6 +120,13 @@ const MovieDetails = () => {
             }
         })
     })
+
+    // Gets all the users movies and updates the savedUserMovies array.
+    const fetchMyMovies = async () => {
+        const request = await axiosOwn.get(requests.fetchMyMovies + savedUser);
+        setSavedUserMovies(request.data);
+    }
+
     return(
         <>
             <div className='movie-info-container'>
@@ -121,7 +148,7 @@ const MovieDetails = () => {
                         <p>Release date: {DateFormatter(movie.release_date)}</p>
                         <p>Genres: {movie.genres ? convertJson(movie.genres) : ''}</p>
                         {savedUser && !watched  && <Button onClick={handleAddMovie} buttonStyle='btn--details'>Add to My Movies</Button>}
-                        {savedUser && watched && <Button onClick={() => console.log("remove movie")} buttonStyle='btn--details'>Remove</Button>}
+                        {savedUser && watched && <Button onClick={handleRemoveMovie} buttonStyle='btn--details'>Remove</Button>}
                     </div>
                 </div>
             </div>

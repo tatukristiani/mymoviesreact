@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from "../api/axios";
 import "../styles/Home.css";
 import Movie from "./Movie";
