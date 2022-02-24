@@ -13,7 +13,7 @@ import {UserMoviesContext} from "../utility/UserMoviesContext";
 import requests from "../requestsTest";
 
 
-const ADD_URL = "/movies";
+const URL_PATH = "/movies";
 
 const MovieDetails = () => {
     const {savedUser} = useContext(UserContext);
@@ -42,7 +42,7 @@ const MovieDetails = () => {
             };
             console.log("Object to send: " + dataToAPI);
             try {
-                const response = await axiosOwn.post(ADD_URL, dataToAPI);
+                const response = await axiosOwn.post(URL_PATH, dataToAPI);
                 console.log(response?.status);
                 if(response.status === 201) {
                     alert("Movie added successfully.");
@@ -67,7 +67,7 @@ const MovieDetails = () => {
 
     const handleRemoveMovie = async () => {
         try {
-            const response = await axiosOwn.delete(requests.deleteMovie + "?user=" + savedUser + "&title=" + movie.title + "&tmdbid=" + movie.id);
+            const response = await axiosOwn.delete(URL_PATH + "?user=" + savedUser + "&title=" + movie.title + "&tmdbid=" + movie.id);
             if(response.status === 200) {
                 alert("Movie removed successfully.");
                 await fetchMyMovies();

@@ -15,6 +15,8 @@ import requests from "./requestsTest";
 import {UserContext} from "./utility/UserContext";
 import {UserMoviesContext} from "./utility/UserMoviesContext";
 import axios from "./api/axios";
+import Movies from "./components/Movies";
+import GenreBrowser from "./components/GenreBrowser";
 
 const App = () => {
     const [savedUser, setSavedUser] = useState(null);
@@ -55,7 +57,7 @@ const App = () => {
                         <Route exact path='/movies'>
                             <MyMovies />
                         </Route>
-                        <Route path='/movies/:id'>
+                        <Route exact path='/movies/:id'>
                             <MovieDetails />
                         </Route>
                         <Route path='/login'>
@@ -67,7 +69,12 @@ const App = () => {
                         <Route path='/register'>
                             <Register/>
                         </Route>
+                        <Route path='/movies/genre/:code'>
+                            <GenreBrowser />
+                            <Movies />
+                        </Route>
                         <Route path='/'>
+                            <GenreBrowser />
                             <Home fetchUrl={requests.fetchTrending}/>
                         </Route>
                     </Switch>

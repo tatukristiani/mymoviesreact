@@ -1,0 +1,28 @@
+
+.genre-container {
+    text-align: center;
+    padding: 10px;
+    margin-top: 40px;
+    margin-left: 130px;
+
+}
+
+.genre-list {
+    /*
+    display: flex;
+    flex-wrap: wrap;
+     */
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.genre-item {
+    /*width: 40%*/
+    background-color: green;
+    float: left;
+    margin: 10px;
+}
+
+.genre-link {
+    text-decoration: none;
+}

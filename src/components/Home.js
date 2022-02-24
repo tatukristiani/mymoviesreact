@@ -13,8 +13,8 @@ const Home = ({fetchUrl}) => {
 
         async function fetchData() {
             const request = await axios.get(fetchUrl, {signal: abortCont.signal});
-            console.log(request.data.results);
-            setMovies(request.data.results);
+            console.log("Data Home: ", request.data);
+            setMovies(request.data);
             return request;
         }
 
