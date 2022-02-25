@@ -1,7 +1,12 @@
 import ReactPaginate from "react-paginate";
 import '../styles/Paginate.css';
+import {useEffect} from "react";
 
 const Paginate = ({onPageChange}) => {
+
+    useEffect(() => {
+
+    },[])
     return (
         <ReactPaginate
             previousLabel={'<'}

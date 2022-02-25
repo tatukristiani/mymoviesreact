@@ -6,7 +6,6 @@ import {useParams} from "react-router-dom";
 import requests from "../requestsTest";
 import Genres from "../utility/Genres";
 import '../styles/Movies.css';
-import ReactPaginate from "react-paginate";
 import Paginate from "./Paginate";
 
 
@@ -34,6 +33,18 @@ const Movies = () => {
             return request.data;
         }
 
+        function checkCodeValidity() {
+            if(code == Genres.ACTION ||
+                code == Genres.COMEDY ||
+                code == Genres.HORROR ||
+                code == Genres.ROMANCE ||
+                code == Genres.DOCS ) {
+                setCodeValid(true);
+            } else {
+                setCodeValid(false);
+            }
+        }
+
         if(codeValid) {
                fetchData(currentPage).then(res => console.log(res)).catch(err => {
                     if (err.name === "AbortError") {
@@ -46,17 +57,6 @@ const Movies = () => {
         return () => abortCont.abort();
     }, [code, codeValid, currentPage]);
 
-    function checkCodeValidity() {
-        if(code == Genres.ACTION ||
-            code == Genres.COMEDY ||
-            code == Genres.HORROR ||
-            code == Genres.ROMANCE ||
-            code == Genres.DOCS ) {
-            setCodeValid(true);
-        } else {
-            setCodeValid(false);
-        }
-    }
 
     return (
         <>
@@ -68,7 +68,7 @@ const Movies = () => {
                         )))}
                     </div>
                     <div className='paginate-container'>
-                        <Paginate onPageChange={handlePageClick} />
+                        <Paginate onPageChange={handlePageClick}/>
                     </div>
                 </div>
             ) : (

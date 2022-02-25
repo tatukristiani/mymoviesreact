@@ -69,7 +69,7 @@ const App = () => {
                         <Route path='/register'>
                             <Register/>
                         </Route>
-                        <Route path='/movies/genre/:code'>
+                        <Route path='/movies/genre/:code/'>
                             <GenreBrowser />
                             <Movies />
                         </Route>
