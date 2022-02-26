@@ -1,31 +1,33 @@
 import Genres from "../utility/Genres";
 import {Link, useParams} from "react-router-dom";
 import '../styles/GenreBrowser.css';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const GenreBrowser = ({currentGenre}) => {
     const [genre, setGenre] = useState('Trending');
     const {code} = useParams();
-
-    const checkCurrentGenre = () => {
-        if(!currentGenre) {
-            if (code === Genres.ACTION) {
-                setGenre('Action');
-            } else if (code === Genres.ROMANCE) {
-                setGenre('Romance');
-            } else if (code === Genres.DOCS) {
-                setGenre('Documentaries');
-            } else if (code === Genres.HORROR) {
-                setGenre('Horror');
-            } else if (code === Genres.COMEDY) {
-                setGenre('Comedy');
+    
+    useEffect(() => {
+        const checkCurrentGenre = () => {
+            if(!currentGenre) {
+                if (code == Genres.ACTION) {
+                    setGenre('Action');
+                } else if (code == Genres.ROMANCE) {
+                    setGenre('Romance');
+                } else if (code == Genres.DOCS) {
+                    setGenre('Documentaries');
+                } else if (code == Genres.HORROR) {
+                    setGenre('Horror');
+                } else if (code == Genres.COMEDY) {
+                    setGenre('Comedy');
+                }
+            } else {
+                setGenre(currentGenre);
             }
-        } else {
-            setGenre(currentGenre);
         }
-    }
-
-    checkCurrentGenre();
+        checkCurrentGenre();
+    }, [code, currentGenre]);
+    
 
     return(
         <>
@@ -45,6 +47,9 @@ const GenreBrowser = ({currentGenre}) => {
                     </li>
                     <li className='genre-item'>
                         <Link to={`/movies/genre/${Genres.ROMANCE}`} onClick={() => setGenre('Romance')} className={genre === 'Romance' ? 'genre-link active' : 'genre-link'}>Romance</Link>
+                    </li>
+                    <li className='genre-item'>
+                        <Link to={`/`} onClick={() => setGenre('Trending')} className={genre === 'Trending' ? 'genre-link active' : 'genre-link'}>Trending</Link>
                     </li>
                 </ul>
                 <div className='genre-header'>

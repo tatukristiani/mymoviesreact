@@ -53,10 +53,10 @@ const Movies = () => {
                         console.log(err);
                     }
                 });
-            }
+        }
+        console.log(currentPage);
         return () => abortCont.abort();
-    }, [code, codeValid, currentPage]);
-
+    }, [code,codeValid, currentPage]);
 
     return (
         <>

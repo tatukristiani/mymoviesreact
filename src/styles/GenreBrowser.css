@@ -28,11 +28,11 @@
 
 .genre-link:hover {
     text-decoration: underline;
-    color: darkred;
+    color: #0d6efd;
 }
 
 .active {
-    color: darkred;
+    color: #0d6efd;
     text-decoration: underline;
 }
 
