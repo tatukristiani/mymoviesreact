@@ -54,6 +54,10 @@ const App = () => {
                 <Navbar />
                 <div className='content'>
                     <Switch>
+                        <Route exact path='/'>
+                            <GenreBrowser currentGenre={'Trending'}/>
+                            <Home />
+                        </Route>
                         <Route exact path='/movies'>
                             <MyMovies />
                         </Route>
@@ -72,10 +76,6 @@ const App = () => {
                         <Route path='/movies/genre/:code'>
                             <GenreBrowser />
                             <Movies />
-                        </Route>
-                        <Route path='/'>
-                            <GenreBrowser currentGenre={'Trending'}/>
-                            <Home />
                         </Route>
                     </Switch>
                 </div>
