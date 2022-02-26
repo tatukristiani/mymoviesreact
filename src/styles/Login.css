@@ -21,8 +21,9 @@ h1 {
     margin: 0 auto;
 }
 .form .control {
-    margin: 0 0 24px;
+    margin: 0 0 25px;
 }
+
 .form .control input {
     width: 100%;
     padding: 14px 16px;
@@ -119,6 +120,7 @@ h1 {
 .block-cube.block-input .bg {
     background: rgba(255, 255, 255, 0.5);
     transition: background 0.2s ease-in-out;
+
 }
 .block-cube.block-input .bg-right .bg-inner,
 .block-cube.block-input .bg-top .bg-inner {

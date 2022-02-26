@@ -80,7 +80,7 @@ const Login = () => {
     }, [pending])
 
     return (
-        <section>
+
             <form autoComplete='off' className='form' onSubmit={handleSubmit}>
                 <p ref={errRef} className={errMsg ? "error-message" : "off-screen"} aria-live="assertive">{errMsg}</p>
                 <div className='control'>
@@ -148,7 +148,7 @@ const Login = () => {
                     Forgot Password?
                 </Link>
             </form>
-        </section>
+
     )
 };
 

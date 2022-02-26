@@ -11,7 +11,6 @@ const Home = () => {
     const [movies,setMovies] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-
     const handlePageClick = (data) => {
         console.log(data.selected);
         setCurrentPage(data.selected + 1);
@@ -26,7 +25,6 @@ const Home = () => {
             setMovies(request.data);
             return request.data;
         }
-
 
         fetchData(currentPage).then(res => console.log(res)).catch(err => {
             if (err.name === "AbortError") {

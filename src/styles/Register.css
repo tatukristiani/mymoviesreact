@@ -2,3 +2,13 @@
     margin-top: 15px;
     justify-content: center;
 }
+
+.username-input-error, .pass-input-error, .email-input-error {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: -15px;
+}
+
+.input-register {
+    margin-bottom: 10px;
+}
