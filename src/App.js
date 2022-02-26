@@ -74,8 +74,8 @@ const App = () => {
                             <Movies />
                         </Route>
                         <Route path='/'>
-                            <GenreBrowser />
-                            <Home fetchUrl={requests.fetchTrending}/>
+                            <GenreBrowser currentGenre={'Trending'}/>
+                            <Home />
                         </Route>
                     </Switch>
                 </div>

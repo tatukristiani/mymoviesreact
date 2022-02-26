@@ -2,23 +2,33 @@ import React, {useState, useEffect} from 'react';
 import axios from "../api/axios";
 import "../styles/Home.css";
 import Movie from "./Movie";
+import requests from "../requestsTest";
+import '../styles/Movies.css';
+import Paginate from "./Paginate";
 
 
-const Home = ({fetchUrl}) => {
-    const[movies,setMovies] = useState([]);
+const Home = () => {
+    const [movies,setMovies] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    // Everytime fetchUrl data changes will load.
+
+    const handlePageClick = (data) => {
+        console.log(data.selected);
+        setCurrentPage(data.selected + 1);
+    }
+
     useEffect(() => {
         const abortCont = new AbortController();
 
-        async function fetchData() {
-            const request = await axios.get(fetchUrl, {signal: abortCont.signal});
+        async function fetchData(page) {
+            const request = await axios.get(requests.fetchTrending + page, {signal: abortCont.signal});
             console.log("Data Home: ", request.data);
             setMovies(request.data);
-            return request;
+            return request.data;
         }
 
-        fetchData().then(res => console.log(res)).catch(err => {
+
+        fetchData(currentPage).then(res => console.log(res)).catch(err => {
             if (err.name === "AbortError") {
                 console.log("Fetch aborted");
             } else {
@@ -27,15 +37,28 @@ const Home = ({fetchUrl}) => {
         });
 
         return () => abortCont.abort();
-    }, [fetchUrl]);
+    }, [currentPage]);
+
 
     return (
         <>
-            <div className="home-container">
-                {movies.map((movie => (
-                    <Movie key={movie.id} movie={movie} databaseData={false}/>
-                    )))}
-            </div>
+            {movies ? (
+                <div>
+                    <div className="home-container">
+                        {movies.map((movie => (
+                            <Movie key={movie.id} movie={movie} databaseData={false}/>
+                        )))}
+                    </div>
+                    <div className='paginate-container'>
+                        <Paginate onPageChange={handlePageClick}/>
+                    </div>
+                </div>
+            ) : (
+                <div className='movies-not-found'>
+                    <p>Sorry... no movies found with the given genre code.</p>
+                </div>
+            )
+            }
         </>
     );
 };

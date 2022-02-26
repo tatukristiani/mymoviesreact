@@ -14,7 +14,7 @@ const requests = {
 }
 */
 const requests = {
-    fetchTrending: `/home`,
+    fetchTrending: `/movies/trending?page=`,
     fetchGenre: `/movies/genre?genre=`,
     fetchMyMovies: `/movies?user=`,
     search: `/movies/search?name=`,
