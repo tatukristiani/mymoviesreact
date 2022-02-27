@@ -54,28 +54,28 @@ const App = () => {
                 <Navbar />
                 <div className='content'>
                     <Switch>
+                        <Route exact path='/'>
+                            <GenreBrowser currentGenre={'Trending'}/>
+                            <Home />
+                        </Route>
                         <Route exact path='/movies'>
                             <MyMovies />
                         </Route>
                         <Route exact path='/movies/:id'>
                             <MovieDetails />
                         </Route>
-                        <Route path='/login'>
+                        <Route excat path='/login'>
                             <Login />
                         </Route>
-                        <Route path='/search'>
+                        <Route excat path='/search'>
                             <Search />
                         </Route>
-                        <Route path='/register'>
+                        <Route excact path='/register'>
                             <Register/>
                         </Route>
-                        <Route path='/movies/genre/:code'>
+                        <Route exact path='/movies/genre/:code'>
                             <GenreBrowser />
                             <Movies />
-                        </Route>
-                        <Route path='/'>
-                            <GenreBrowser currentGenre={'Trending'}/>
-                            <Home />
                         </Route>
                     </Switch>
                 </div>
