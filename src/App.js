@@ -17,6 +17,7 @@ import {UserMoviesContext} from "./utility/UserMoviesContext";
 import axios from "./api/axios";
 import Movies from "./components/Movies";
 import GenreBrowser from "./components/GenreBrowser";
+import ForgotPassword from "./components/ForgotPassword";
 
 const App = () => {
     const [savedUser, setSavedUser] = useState(null);
@@ -68,6 +69,9 @@ const App = () => {
                         </Route>
                         <Route excact path='/register'>
                             <Register/>
+                        </Route>
+                        <Route exact path='/forgot-password'>
+                            <ForgotPassword />
                         </Route>
                         <Route path='/movies/genre/:code'>
                             <GenreBrowser />

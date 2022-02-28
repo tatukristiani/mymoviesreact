@@ -13,7 +13,7 @@ import Paginate from "./Paginate";
 const Movies = () => {
     const [movies,setMovies] = useState([]);
     const {code} = useParams(); // Code for the genre.
-    const [codeValid, setCodeValid] = useState(false);
+    const [codeValid, setCodeValid] = useState(true);
 
     const [currentPage, setCurrentPage] = useState(1);
 
