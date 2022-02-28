@@ -3,13 +3,17 @@ import {Link, useParams} from "react-router-dom";
 import '../styles/GenreBrowser.css';
 import {useEffect, useState} from "react";
 
-const GenreBrowser = ({currentGenre}) => {
-    const [genre, setGenre] = useState('Trending');
+const GenreBrowser = () => {
+    const [genre, setGenre] = useState('');
     const {code} = useParams();
-    
+
+    console.log("Code: " + code + " & CurGenre: " + genre);
     useEffect(() => {
+        console.log("Genre changed");
         const checkCurrentGenre = () => {
-            if(!currentGenre) {
+            if(code == undefined) {
+                setGenre('Trending');
+            } else {
                 if (code == Genres.ACTION) {
                     setGenre('Action');
                 } else if (code == Genres.ROMANCE) {
@@ -21,13 +25,10 @@ const GenreBrowser = ({currentGenre}) => {
                 } else if (code == Genres.COMEDY) {
                     setGenre('Comedy');
                 }
-            } else {
-                setGenre(currentGenre);
             }
         }
         checkCurrentGenre();
-    }, [code, currentGenre]);
-    
+    }, [genre,code]);
 
     return(
         <>

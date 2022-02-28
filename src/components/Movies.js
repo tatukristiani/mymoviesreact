@@ -9,6 +9,7 @@ import '../styles/Movies.css';
 import Paginate from "./Paginate";
 
 
+
 const Movies = () => {
     const [movies,setMovies] = useState([]);
     const {code} = useParams(); // Code for the genre.
@@ -29,7 +30,12 @@ const Movies = () => {
         async function fetchData(page) {
             const request = await axios.get(requests.fetchGenre + code + "&page=" + page, {signal: abortCont.signal});
             console.log("Data Home: ", request.data);
-            setMovies(request.data);
+            let filterMovies = request.data.filter(movie => {
+                if(movie.poster_path !== null) {
+                    return movie;
+                }
+            })
+            setMovies(filterMovies);
             return request.data;
         }
 
@@ -54,9 +60,8 @@ const Movies = () => {
                     }
                 });
         }
-        console.log(currentPage);
         return () => abortCont.abort();
-    }, [code,codeValid, currentPage]);
+    },[code, codeValid, currentPage]);
 
     return (
         <>

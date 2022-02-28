@@ -22,7 +22,12 @@ const Home = () => {
         async function fetchData(page) {
             const request = await axios.get(requests.fetchTrending + page, {signal: abortCont.signal});
             console.log("Data Home: ", request.data);
-            setMovies(request.data);
+            let filterMovies = request.data.filter(movie => {
+                if(movie.poster_path !== null) {
+                    return movie;
+                }
+            })
+            setMovies(filterMovies);
             return request.data;
         }
 

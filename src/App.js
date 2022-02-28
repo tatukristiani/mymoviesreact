@@ -8,7 +8,7 @@ import Register from "./components/Register";
 import MovieDetails from "./components/MovieDetails";
 import Footer from "./components/Footer";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import './App.css';
 
 import requests from "./requestsTest";
@@ -54,10 +54,6 @@ const App = () => {
                 <Navbar />
                 <div className='content'>
                     <Switch>
-                        <Route exact path='/'>
-                            <GenreBrowser currentGenre={'Trending'}/>
-                            <Home />
-                        </Route>
                         <Route exact path='/movies'>
                             <MyMovies />
                         </Route>
@@ -73,9 +69,13 @@ const App = () => {
                         <Route excact path='/register'>
                             <Register/>
                         </Route>
-                        <Route exact path='/movies/genre/:code'>
+                        <Route path='/movies/genre/:code'>
                             <GenreBrowser />
                             <Movies />
+                        </Route>
+                        <Route path='/'>
+                            <GenreBrowser />
+                            <Home />
                         </Route>
                     </Switch>
                 </div>
