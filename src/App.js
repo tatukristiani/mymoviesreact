@@ -62,13 +62,13 @@ const App = () => {
                         <Route exact path='/movies/:id'>
                             <MovieDetails />
                         </Route>
-                        <Route excat path='/login'>
+                        <Route exact path='/login'>
                             <Login />
                         </Route>
-                        <Route excat path='/search'>
+                        <Route exact path='/search'>
                             <Search />
                         </Route>
-                        <Route excact path='/register'>
+                        <Route exact path='/register'>
                             <Register/>
                         </Route>
                         <Route exact path='/forgot-password'>

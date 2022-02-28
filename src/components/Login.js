@@ -144,7 +144,7 @@ const Login = () => {
                 <Link to='/register' className='nav-links register-link'>
                     Don't have an account? Register here!
                 </Link>
-                <Link className='nav-links forgot-link'>
+                <Link to='/forgot-password' className='nav-links forgot-link'>
                     Forgot Password?
                 </Link>
             </form>

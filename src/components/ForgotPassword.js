@@ -21,13 +21,9 @@ const ForgotPassword = () => {
     const sendEmail = async (e) => {
         e.preventDefault();
         if(email !== '') {
-            if (e.key === 'Enter' || e.target.tagName.toLowerCase() === 'form') {
-                const results = await axios.post(requests.resetPassword, data, {
-                    headers: {'Content-Type': 'application/json'}
-                });
-                if(results.status === 200) {
-                    setResponse(results.data);
-                }
+            const results = await axios.post(requests.resetPassword, data);
+            if(results.status === 200) {
+                setResponse(results.data);
             }
         } else {
             setError(true);

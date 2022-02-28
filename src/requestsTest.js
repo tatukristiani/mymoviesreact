@@ -19,7 +19,8 @@ const requests = {
     fetchMyMovies: `/movies?user=`,
     search: `/movies/search?name=`,
     deleteMovie: `/movies`,
-    resetPassword: `/reset-password`
+    resetPassword: `/reset-password`,
+    updatePassword: `/update-password`
 }
 
 export default requests;
