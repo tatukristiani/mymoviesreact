@@ -18,6 +18,7 @@ import axios from "./api/axios";
 import Movies from "./components/Movies";
 import GenreBrowser from "./components/GenreBrowser";
 import ForgotPassword from "./components/ForgotPassword";
+import UpdatePassword from "./components/UpdatePassword";
 
 const App = () => {
     const [savedUser, setSavedUser] = useState(null);
@@ -55,29 +56,32 @@ const App = () => {
                 <Navbar />
                 <div className='content'>
                     <Switch>
-                        <Route exact path='/mymoviesreact/movies'>
+                        <Route exact path='/movies'>
                             <MyMovies />
                         </Route>
-                        <Route exact path='/mymoviesreact//movies/:id'>
+                        <Route exact path='/movies/:id'>
                             <MovieDetails />
                         </Route>
-                        <Route excat path='/mymoviesreact//login'>
+                        <Route excat path='/login'>
                             <Login />
                         </Route>
-                        <Route excat path='/mymoviesreact//search'>
+                        <Route excat path='/search'>
                             <Search />
                         </Route>
-                        <Route excact path='/mymoviesreact//register'>
+                        <Route excact path='/register'>
                             <Register/>
                         </Route>
-                        <Route exact path='/mymoviesreact//forgot-password'>
+                        <Route exact path='/forgot-password'>
                             <ForgotPassword />
                         </Route>
-                        <Route path='/mymoviesreact//movies/genre/:code'>
+                        <Route exact path='/update-password/:token'>
+                            <UpdatePassword />
+                        </Route>
+                        <Route exact path='/movies/genre/:code'>
                             <GenreBrowser />
                             <Movies />
                         </Route>
-                        <Route path='/mymoviesreact/'>
+                        <Route path='/'>
                             <GenreBrowser />
                             <Home />
                         </Route>

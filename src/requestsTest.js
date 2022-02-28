@@ -18,7 +18,8 @@ const requests = {
     fetchGenre: `/movies/genre?genre=`,
     fetchMyMovies: `/movies?user=`,
     search: `/movies/search?name=`,
-    deleteMovie: `/movies`
+    deleteMovie: `/movies`,
+    resetPassword: `/reset-password`
 }
 
 export default requests;
