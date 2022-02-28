@@ -55,29 +55,29 @@ const App = () => {
                 <Navbar />
                 <div className='content'>
                     <Switch>
-                        <Route exact path='/movies'>
+                        <Route exact path='/mymoviesreact/movies'>
                             <MyMovies />
                         </Route>
-                        <Route exact path='/movies/:id'>
+                        <Route exact path='/mymoviesreact//movies/:id'>
                             <MovieDetails />
                         </Route>
-                        <Route excat path='/login'>
+                        <Route excat path='/mymoviesreact//login'>
                             <Login />
                         </Route>
-                        <Route excat path='/search'>
+                        <Route excat path='/mymoviesreact//search'>
                             <Search />
                         </Route>
-                        <Route excact path='/register'>
+                        <Route excact path='/mymoviesreact//register'>
                             <Register/>
                         </Route>
-                        <Route exact path='/forgot-password'>
+                        <Route exact path='/mymoviesreact//forgot-password'>
                             <ForgotPassword />
                         </Route>
-                        <Route path='/movies/genre/:code'>
+                        <Route path='/mymoviesreact//movies/genre/:code'>
                             <GenreBrowser />
                             <Movies />
                         </Route>
-                        <Route path='/'>
+                        <Route path='/mymoviesreact/'>
                             <GenreBrowser />
                             <Home />
                         </Route>
