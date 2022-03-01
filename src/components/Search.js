@@ -9,6 +9,7 @@ const Search = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [search, setSearch] = useState('');
     const [searched, setSearched] = useState(false);
+    const [error, setError] = useState('');
 
 
     const handleSearchChange = (e) => {
@@ -21,17 +22,23 @@ const Search = () => {
         if(e.key === 'Enter' || e.target.tagName.toLowerCase() === 'i') {
             const results = await axios.get(requests.search + search);
             console.log(results.data);
+            if(results.data.length >= 1) {
+                setSearched(true);
+            } else {
+                setError(results.data.message);
+            }
             let resultsArray = results.data.filter(function(movie) {
                 return movie.poster_path
             });
             setSearchResults(resultsArray);
         }
-        setSearched(true);
+
     }
 
     return(
         <>
             <SearchBar value={search} onChange={handleSearchChange} handleSearch={(e) => handleSearch(e)}/>
+            {error && <p className='search-error'>{error}</p> }
             {searched &&
                 <p className='search-value'>Search Results Found with '{search}'</p>
             }
