@@ -57,7 +57,7 @@ const Navbar = () => {
                         </li>
                         {savedUser &&
                             <li className='nav-item'>
-                                <Link to='/movies' className='nav-links' onClick={closeMobileMenu}>
+                                <Link to='/profile' className='nav-links' onClick={closeMobileMenu}>
                                     {savedUser}
                                 </Link>
                             </li>

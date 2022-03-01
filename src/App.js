@@ -19,6 +19,7 @@ import Movies from "./components/Movies";
 import GenreBrowser from "./components/GenreBrowser";
 import ForgotPassword from "./components/ForgotPassword";
 import UpdatePassword from "./components/UpdatePassword";
+import ProfilePage from "./components/ProfilePage";
 
 const App = () => {
     const [savedUser, setSavedUser] = useState(null);
@@ -56,6 +57,9 @@ const App = () => {
                 <Navbar />
                 <div className='content'>
                     <Switch>
+                        <Route exact path='/profile'>
+                            <ProfilePage />
+                        </Route>
                         <Route exact path='/movies'>
                             <MyMovies />
                         </Route>
