@@ -24,6 +24,15 @@
     transition: all 0.3s ease-out;
 }
 
+.btn--forgot {
+    background-color: transparent;
+    color: #fff;
+    padding: 8px 20px;
+    border: 1px solid var(--primary);
+    transition: all 0.3s ease-out;
+    margin-top: 50px;
+}
+
 .btn--details {
     background-color: transparent;
     color: #fff;
