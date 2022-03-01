@@ -21,7 +21,6 @@ const Search = () => {
     const handleSearch = async (e) => {
         if(e.key === 'Enter' || e.target.tagName.toLowerCase() === 'i') {
             const results = await axios.get(requests.search + search);
-            console.log(results.data);
             if(results.data.length >= 1) {
                 setSearched(true);
             } else {

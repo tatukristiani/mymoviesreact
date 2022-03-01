@@ -9,8 +9,6 @@ const ForgotPassword = () => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState(false);
     const [response, setResponse] = useState('');
-    const [disabled, setDisabled] = useState(false);
-
 
     const data = {
         email: email
@@ -26,11 +24,6 @@ const ForgotPassword = () => {
             const results = await axios.post(requests.resetPassword, data, {
                 headers: {'Content-Type': 'application/json'}
             });
-            if (results.status !== 200) {
-                setError(true);
-            } else {
-                setDisabled(true);
-            }
             setResponse(results.data.msg);
         } else {
             setError(true);
@@ -47,11 +40,10 @@ const ForgotPassword = () => {
                        placeholder='Enter your email address'
                        onChange={handleEmailChange}
                        value={email}
-                       disabled={disabled}
                        autoComplete='off'
                 />
                 {error && <p className='forgot-password-error'>Please enter a valid email address!</p>}
-                <Button buttonStyle='btn--forgot' onClick={sendEmail} disabled={disabled}>Reset Password</Button>
+                <Button buttonStyle='btn--forgot' onClick={sendEmail}>Reset Password</Button>
             </div>
             <p className='server-response'>{response}</p>
         </div>

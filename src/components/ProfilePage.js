@@ -25,7 +25,6 @@ const ProfilePage = () => {
         //Fetch users information including username, email
         async function fetchUser() {
             const results = await axios.get(requests.fetchUser + savedUser, {signal: abortCont.signal});
-            console.log(results.data);
             setEmail(results.data.email);
             setUsername(results.data.username);
             return results.data;

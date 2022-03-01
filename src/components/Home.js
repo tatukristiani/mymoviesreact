@@ -12,7 +12,6 @@ const Home = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const handlePageClick = (data) => {
-        console.log(data.selected);
         setCurrentPage(data.selected + 1);
     }
 
@@ -21,7 +20,6 @@ const Home = () => {
 
         async function fetchData(page) {
             const request = await axios.get(requests.fetchTrending + page, {signal: abortCont.signal});
-            console.log("Data Home: ", request.data);
             let filterMovies = request.data.filter(movie => {
                 if(movie.poster_path !== null) {
                     return movie;

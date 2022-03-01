@@ -8,7 +8,6 @@ const GenreBrowser = () => {
     const {code} = useParams();
 
     useEffect(() => {
-        console.log("Genre changed");
         const checkCurrentGenre = () => {
             if(code == undefined) {
                 setGenre('Trending');

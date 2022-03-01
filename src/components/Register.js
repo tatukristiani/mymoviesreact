@@ -31,7 +31,6 @@ const Register = () => {
 
         try {
             const response = await axios.post(requests.register, account);
-            console.log(response?.data.message);
             setEmail('');
             setUser('');
             setPwd('');
@@ -40,7 +39,6 @@ const Register = () => {
             if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 403) {
-                console.log(err.response?.data.error);
                 setErrMsg(err.response?.data.error);
             } else if (err.response?.status === 500) {
                 setErrMsg('Internal problems. Apologies.')

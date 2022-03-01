@@ -18,7 +18,6 @@ const MyMovies = () => {
         savedUserMovies.forEach(movie => {
             totalRuntimeCount += movie.runtime;
         })
-        console.log("Total time: " + totalRuntimeCount);
         setTotalTime(() => totalRuntimeCount);
 
     }, [savedUserMovies])

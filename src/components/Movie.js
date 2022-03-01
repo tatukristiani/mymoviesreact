@@ -14,7 +14,6 @@ const Movie = ({movie, databaseData}) => {
     useEffect(() => {
         savedUserMovies.forEach(m => {
             if((movie.title === m.title && movie.tmdbid === m.tmdbid) || (movie.title === m.title && movie.id === m.tmdbid)) {
-                console.log("FOUND ONE!");
                 setWatched(true);
             }
         })

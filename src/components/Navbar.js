@@ -22,7 +22,6 @@ const Navbar = () => {
     };
 
     const logout = () => {
-        //localStorage.clear()
         setSavedUser(null);
         closeMobileMenu();
     }

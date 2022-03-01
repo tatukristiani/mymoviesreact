@@ -26,8 +26,6 @@ const MovieDetails = () => {
     const handleAddMovie = async () => {
         // Confirm that we have actual data to send.
         if (movie != null && movie.title) {
-            console.log("Movie is good to go")
-
 
             const dataToAPI = {
                 title: movie.title,
@@ -40,10 +38,8 @@ const MovieDetails = () => {
                 genres: convertJson(movie.genres),
                 user: savedUser
             };
-            console.log("Object to send: " + dataToAPI);
             try {
                 const response = await axiosOwn.post(URL_PATH, dataToAPI);
-                console.log(response?.status);
                 if(response.status === 201) {
                     alert("Movie added successfully.");
                     await fetchMyMovies();

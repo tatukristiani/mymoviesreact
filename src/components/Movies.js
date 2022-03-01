@@ -17,7 +17,6 @@ const Movies = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const handlePageClick = (data) => {
-        console.log(data.selected);
         setCurrentPage(data.selected + 1);
     }
 

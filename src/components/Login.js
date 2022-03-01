@@ -31,16 +31,11 @@ const Login = () => {
         try {
             const response = await axios.post(LOGIN_URL, account,
                 {
-                    headers: {'Content-Type': 'application/json'},
-                    //withCredentials: true use when Access-control allow origin is specified to specific sites
+                    headers: {'Content-Type': 'application/json'}
                 });
-            console.log(JSON.stringify(response?.data));
             setUser('');
             setPwd('');
-            //localStorage.setItem("user", account.username);
-            //setSavedUser(localStorage.getItem("user"));
             setSavedUser(account.username);
-            console.log("User saved: " + savedUser);
             history.push("/");
         } catch (err) {
             if (!err?.response) {
@@ -62,7 +57,6 @@ const Login = () => {
     // On load focus on username field.
     useEffect(() => {
         userRef.current.focus();
-        console.log(savedUser);
         },[])
 
 
