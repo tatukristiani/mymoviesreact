@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import SearchBar from "./SearchBar";
 import Movie from "./Movie";
 import axios from "../api/axios";
-import requests from "../requestsTest";
+import requests from "../utility/request";
 import '../styles/Search.css';
 
 const Search = () => {

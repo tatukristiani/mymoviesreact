@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useParams} from "react-router-dom";
 import axios from '../api/axios';
-import requests from "../requestsTest";
+import requests from "../utility/request";
 import { useHistory } from "react-router-dom";
 import {Button} from "./Button";
 import '../styles/UpdatePassword.css';

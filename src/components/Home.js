@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from "../api/axios";
 import "../styles/Home.css";
 import Movie from "./Movie";
-import requests from "../requestsTest";
+import requests from "../utility/request";
 import '../styles/Movies.css';
 import Paginate from "./Paginate";
 

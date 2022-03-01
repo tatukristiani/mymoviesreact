@@ -1,6 +1,6 @@
 import {useState} from "react";
 import axios from "../api/axios";
-import requests from "../requestsTest";
+import requests from "../utility/request";
 import '../styles/ForgotPassword.css';
 import {Button} from "./Button";
 import validateEmail from "../utility/ValidateEmail";

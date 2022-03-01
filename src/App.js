@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import './App.css';
 
-import requests from "./requestsTest";
+import requests from "./utility/request";
 import {UserContext} from "./utility/UserContext";
 import {UserMoviesContext} from "./utility/UserMoviesContext";
 import axios from "./api/axios";

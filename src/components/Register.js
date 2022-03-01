@@ -4,7 +4,7 @@ import '../styles/Login.css';
 import '../styles/Register.css';
 import { useHistory } from "react-router-dom";
 import {Link} from "react-router-dom";
-import requests from "../requestsTest";
+import requests from "../utility/request";
 
 const REGISTER = 'Register';
 const CREATING_ACCOUNT = 'Creating Account...';

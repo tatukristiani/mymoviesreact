@@ -10,7 +10,7 @@ import '../styles/MovieDetails.css';
 import {UserContext} from "../utility/UserContext";
 import DateFormatter from "../utility/DateFormatter";
 import {UserMoviesContext} from "../utility/UserMoviesContext";
-import requests from "../requestsTest";
+import requests from "../utility/request";
 
 
 const URL_PATH = "/movies";

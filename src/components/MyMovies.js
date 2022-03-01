@@ -12,6 +12,7 @@ const MyMovies = () => {
     const [totalTime, setTotalTime] = useState(0);
 
 
+
     useEffect(() => {
         let totalRuntimeCount = 0;
         savedUserMovies.forEach(movie => {
@@ -27,6 +28,7 @@ const MyMovies = () => {
             {savedUser ? (
                 <div className='movies'>
                     <h1 className='my-movies-header'>{convertMinutesToString(totalTime)}</h1>
+                    <h1 className='my-movies-header'>Total movies watched: {savedUserMovies.length}</h1>
                     {savedUserMovies.map((movie => (
                         <Movie key={movie.id} movie={movie} databaseData={true}/>
                     )))}

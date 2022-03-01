@@ -1,0 +1,30 @@
+.profile-header {
+    margin: 60px;
+    text-align: center;
+}
+
+.user-information-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-input {
+    width: 250px;
+    height: 30px;
+    margin: 10px 0 20px 0px;
+    font-size: 17px;
+}
+
+.profile.container {
+    text-align-last: center;
+    margin:50px;
+}
+
+.profile-label {
+    margin-left: -160px;
+}
+
+.profile-label-email {
+    margin-left: -190px;
+}

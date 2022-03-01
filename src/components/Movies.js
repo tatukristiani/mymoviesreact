@@ -3,7 +3,7 @@ import axios from "../api/axios";
 import "../styles/Home.css";
 import Movie from "./Movie";
 import {useParams} from "react-router-dom";
-import requests from "../requestsTest";
+import requests from "../utility/request";
 import Genres from "../utility/Genres";
 import '../styles/Movies.css';
 import Paginate from "./Paginate";
