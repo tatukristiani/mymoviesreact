@@ -14,22 +14,20 @@ const Movies = () => {
     const [movies,setMovies] = useState([]);
     const {code} = useParams(); // Code for the genre.
     const [codeValid, setCodeValid] = useState(true);
-
     const [currentPage, setCurrentPage] = useState(1);
-
 
     const handlePageClick = (data) => {
         console.log(data.selected);
         setCurrentPage(data.selected + 1);
     }
 
+    
     useEffect(() => {
         const abortCont = new AbortController();
         checkCodeValidity();
 
         async function fetchData(page) {
             const request = await axios.get(requests.fetchGenre + code + "&page=" + page, {signal: abortCont.signal});
-            console.log("Data Home: ", request.data);
             let filterMovies = request.data.filter(movie => {
                 if(movie.poster_path !== null) {
                     return movie;
@@ -62,7 +60,7 @@ const Movies = () => {
         }
         return () => abortCont.abort();
     },[code, codeValid, currentPage]);
-
+    
     return (
         <>
             {codeValid ? (

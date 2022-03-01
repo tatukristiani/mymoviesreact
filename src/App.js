@@ -25,6 +25,8 @@ const App = () => {
     const [savedUser, setSavedUser] = useState(null);
     const [savedUserMovies, setSavedUserMovies] = useState([]);
 
+
+    console.log("Page render");
     // Effect used when savedUser is changed. Fetches the currently logged-in users movies and saves them to savedUserMovies.
     useEffect( () => {
         const abortCont = new AbortController();

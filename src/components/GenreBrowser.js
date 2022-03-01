@@ -7,7 +7,6 @@ const GenreBrowser = () => {
     const [genre, setGenre] = useState('');
     const {code} = useParams();
 
-    console.log("Code: " + code + " & CurGenre: " + genre);
     useEffect(() => {
         console.log("Genre changed");
         const checkCurrentGenre = () => {
@@ -28,7 +27,7 @@ const GenreBrowser = () => {
             }
         }
         checkCurrentGenre();
-    }, [genre,code]);
+    }, [code, genre]);
 
     return(
         <>
