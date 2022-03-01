@@ -2,23 +2,24 @@ import React, {useEffect, useState, useRef} from 'react';
 import axios from '../api/axios';
 import '../styles/Login.css';
 import '../styles/Register.css';
-
+import { useHistory } from "react-router-dom";
 import {Link} from "react-router-dom";
+import requests from "../requestsTest";
 
-const REGISTER_URL = '/register';
 const REGISTER = 'Register';
 const CREATING_ACCOUNT = 'Creating Account...';
-
+const PROCEED_TEXT = 'You will be redirected to login in a few seconds.';
 const Register = () => {
     const emailRef = useRef();
     const errRef = useRef();
-
+    const history = useHistory();
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
     const [email, setEmail] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [pending, setPending] = useState(false);
     const [register, setRegister] = useState(REGISTER);
+    const [success, setSuccess] = useState('');
 
 
     // Handles register, doesn't use jsonwebtoken yet.
@@ -29,11 +30,12 @@ const Register = () => {
         const account = {username: user, password: pwd, email: email};
 
         try {
-            const response = await axios.post(REGISTER_URL, account);
-            console.log(JSON.stringify(response?.data));
+            const response = await axios.post(requests.register, account);
+            console.log(response?.data.message);
             setEmail('');
             setUser('');
             setPwd('');
+            setSuccess(response.data.message + " " + PROCEED_TEXT);
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -48,6 +50,9 @@ const Register = () => {
             errRef.current.focus();
         }
         setPending(false);
+        setTimeout(() => {
+            history.push("/login");
+        }, 10000);
     }
 
     // On load focus on username field.
@@ -155,6 +160,7 @@ const Register = () => {
                 <Link to='/login' className='nav-links login-link'>
                     Already have an account? Sign In!
                 </Link>
+                {success && <p className='register-success'>{success}</p>}
             </form>
         </section>
     )

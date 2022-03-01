@@ -12,3 +12,10 @@
 .input-register {
     margin-bottom: 10px;
 }
+
+.register-success {
+    color: green;
+    margin-top: 20px;
+    width: 630px;
+    margin-left: -130px;
+}

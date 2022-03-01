@@ -20,7 +20,8 @@ const requests = {
     search: `/movies/search?name=`,
     deleteMovie: `/movies`,
     resetPassword: `/reset-password`,
-    updatePassword: `/update-password`
+    updatePassword: `/update-password`,
+    register: `/register`
 }
 
 export default requests;
