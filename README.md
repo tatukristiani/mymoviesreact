@@ -13,7 +13,7 @@ The application provides information about how many movies you've seen so far (a
 
 
 # Technicalities
-This projects uses GitHub Pages to deploy the website.  
+This project uses GitHub Pages to deploy the website.  
 This project utilized React.js to build the front-end and also node.js was used in the process.   
 IDE used for the project was WebStorms 2021.3.2 version.  
 The REST API is hosted on heroku and the source code can be found here -> [REST API](https://github.com/tatukristiani/mymoviesapi)  
