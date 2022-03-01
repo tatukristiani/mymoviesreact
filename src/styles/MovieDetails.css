@@ -33,5 +33,17 @@ p {
     margin: 15px;
 }
 
+@media screen and (max-width: 800px) {
+    .movie-detail-container {
+        flex-direction: column;
+    }
+    .image-container, .movie-details {
+        align-self: center;
+    }
+    .movie-details {
+        text-align: center;
+    }
+}
+
 
 
