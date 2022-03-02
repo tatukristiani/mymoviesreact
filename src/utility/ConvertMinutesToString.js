@@ -1,4 +1,8 @@
-
+/**
+ * Converts movies minutes to a string.
+ * @param runtimeMinutes Minutes given to the function.
+ * @returns {string} Example: "Total time watched: 12 h 10 min"
+ */
 export default function convertMinutesToString(runtimeMinutes) {
     let string = "Total time watched: ";
     if(runtimeMinutes && runtimeMinutes !== 0) {

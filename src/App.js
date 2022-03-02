@@ -8,7 +8,7 @@ import Register from "./components/Register";
 import MovieDetails from "./components/MovieDetails";
 import Footer from "./components/Footer";
 
-import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router,Route, Switch} from "react-router-dom";
 import './App.css';
 
 import requests from "./utility/request";
@@ -21,6 +21,11 @@ import ForgotPassword from "./components/ForgotPassword";
 import UpdatePassword from "./components/UpdatePassword";
 import ProfilePage from "./components/ProfilePage";
 
+/**
+ * Root component of the application.
+ * @returns {JSX.Element} The entire website.
+ * @constructor Creates the App component.
+ */
 const App = () => {
     const [savedUser, setSavedUser] = useState(null);
     const [savedUserMovies, setSavedUserMovies] = useState([]);

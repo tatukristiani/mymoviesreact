@@ -1,7 +1,11 @@
 
-// Used to validate username and password. Extremely simple validation.
+
+/**
+ *  Used to validate username and password. Check if the string has between 4-20 characters.
+ * @param credentialToValidate username or password to validate.
+ * @returns {boolean} valid = true, inValid = false
+ */
 export default function validateCredential(credentialToValidate) {
-    // Regex accepts usernames and passwords that contain 4-20 characters that contain only letters and numbers.
     let regex = /^[a-zA-Z0-9]{4,20}$/;
     let pattern = new RegExp(regex);
     return pattern.test(credentialToValidate);

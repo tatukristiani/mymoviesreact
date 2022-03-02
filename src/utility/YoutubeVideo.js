@@ -2,6 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import '../utility/YoutubeVideo.css';
 
+/**
+ * Used for showing the trailer video. If the give embedId doesn't exist. It doesn't show any video.
+ * @param embedId youtube videos unique id.
+ * @returns {JSX.Element} div with iframe that contains the YouTube video.
+ * @constructor Creates the YoutubeEmbed component with the given embedId.
+ */
 const YoutubeEmbed = ({ embedId }) => (
     <div className="video-responsive">
         <iframe

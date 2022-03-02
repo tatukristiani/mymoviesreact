@@ -1,4 +1,7 @@
-
+/**
+ * Request tempaltes used with own axios requests.
+ * @type {{fetchTrending: string, resetPassword: string, search: string, updatePassword: string, deleteMovie: string, updateUser: string, fetchUser: string, login: string, fetchGenre: string, fetchMyMovies: string, register: string}}
+ */
 const requests = {
     fetchTrending: `/movies/trending?page=`,
     fetchGenre: `/movies/genre?genre=`,

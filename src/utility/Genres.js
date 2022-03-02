@@ -1,5 +1,8 @@
 
-// Genres codes for TMDB API.
+/**
+ * Genres codes for TMDB API. Used when wanting to get specific genre.
+ * @type {{ACTION: number, HORROR: number, ROMANCE: number, COMEDY: number, DOCS: number}}
+ */
 const Genres = {
     ACTION: 28,
     COMEDY: 35,
