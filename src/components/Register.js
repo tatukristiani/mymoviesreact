@@ -6,9 +6,20 @@ import { useHistory } from "react-router-dom";
 import {Link} from "react-router-dom";
 import requests from "../utility/request";
 
+// Register buttons text
 const REGISTER = 'Register';
+
+// Register buttons text when clicked
 const CREATING_ACCOUNT = 'Creating Account...';
+
+// If Succeeded register this text will appear
 const PROCEED_TEXT = 'You will be redirected to login in a few seconds.';
+
+/**
+ * Register form where user can create and account.
+ * @returns {JSX.Element} form element which contain all the needed input fields for user data.
+ * @constructor Creates a Register component.
+ */
 const Register = () => {
     const emailRef = useRef();
     const errRef = useRef();
@@ -22,7 +33,9 @@ const Register = () => {
     const [success, setSuccess] = useState('');
 
 
-    // Handles register, doesn't use jsonwebtoken yet.
+    // Send the request to register a new user.
+    // On success redirects to login page.
+    // On failure an error message is displayed.
     const handleSubmit = async (e) => {
         e.preventDefault();
         setPending(true);

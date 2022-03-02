@@ -7,10 +7,16 @@ import {Button} from "./Button";
 import '../styles/UpdatePassword.css';
 import validateCredential from "../utility/ValidateCredentials";
 
+// Text to the user the updating the password was successful.
 const WAIT_STRING = 'You will be redirected to login in a few seconds.';
 
+/**
+ * UpdatePassword page that is used when user has forgotten their password, this page is displayed after the user click a link from their email.
+ * @returns {JSX.Element} Elements with input fields for password and confirm password.
+ * @constructor Creates the UpdatePassword component.
+ */
 const UpdatePassword = () => {
-    const {token} = useParams();
+    const {token} = useParams(); // This token tells us which user has sent this request.
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
@@ -18,6 +24,7 @@ const UpdatePassword = () => {
     const history = useHistory();
 
 
+    // Sends the request to the API. If the password is valid and the token is valid. Then the request will be a success.
     const sendUpdatedPassword = async () => {
         if(password === confirmPassword && validateCredential(password)) {
             const data = {
@@ -41,6 +48,7 @@ const UpdatePassword = () => {
             setError('Password must have 4-20 characters only!');
         }
     }
+
     const handleConfirmPasswordChange = (e) => {
         setConfirmPassword(e.target.value);
         setError('');

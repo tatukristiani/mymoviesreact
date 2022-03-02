@@ -5,6 +5,11 @@ import axios from "../api/axios";
 import requests from "../utility/request";
 import '../styles/Search.css';
 
+/**
+ * Search page which includes the SearchBar component and a container to show the results of the search.
+ * @returns {JSX.Element} results of the search request.
+ * @constructor Creates the Search component.
+ */
 const Search = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [search, setSearch] = useState('');
@@ -18,6 +23,7 @@ const Search = () => {
         setSearchResults([]);
     }
 
+    // Sends the request to search for a movie with the given input.
     const handleSearch = async (e) => {
         if(e.key === 'Enter' || e.target.tagName.toLowerCase() === 'i') {
             const results = await axios.get(requests.search + search);
