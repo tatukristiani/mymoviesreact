@@ -4,6 +4,11 @@ import { Button } from './Button';
 import '../styles/Navbar.css';
 import {UserContext} from "../utility/UserContext";
 
+/**
+ * Navigation bar of the application, used to switch between main pages.
+ * @returns {JSX.Element} elements that has multiple Link elements that are hardcoded.
+ * @constructor Creates the Navbar component.
+ */
 const Navbar = () => {
     const {savedUser, setSavedUser} = useContext(UserContext);
     const [click, setClick] = useState(false);
@@ -13,6 +18,7 @@ const Navbar = () => {
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
 
+    // When windows width goes to 960px or less, disables the login/logout button.
     const showButton = () => {
         if (window.innerWidth <= 960) {
             setButton(false);
@@ -21,6 +27,7 @@ const Navbar = () => {
         }
     };
 
+    // Logs out the user.
     const logout = () => {
         setSavedUser(null);
         closeMobileMenu();

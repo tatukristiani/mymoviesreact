@@ -8,9 +8,15 @@ import {useHistory} from "react-router-dom";
 import validateEmail from "../utility/ValidateEmail";
 import validateCredential from "../utility/ValidateCredentials";
 
-
+// Error messages for invalid username and email.
 const USER_ERROR = 'Username must be between 4-20 characters!';
 const EMAIL_ERROR = 'Email must be a valid one! i.e. example@gmail.com';
+
+/**
+ * Page of the user which contains information about the users movies and the user can modify their username/email from here.
+ * @returns {JSX.Element} Elements which contain inputs for username and email and button for update the data or canceling.
+ * @constructor Creates the ProfilePage. If there is no logged user there is no way of editing any data.
+ */
 const ProfilePage = () => {
     const {savedUser, setSavedUser} = useContext(UserContext);
     const [username, setUsername] = useState('');
@@ -20,9 +26,9 @@ const ProfilePage = () => {
     const [emailError, setEmailError] = useState('');
     const [response, setResponse] = useState('');
 
+    // Fetched the currently logged in users username and email.
     useEffect( () => {
         const abortCont = new AbortController();
-        //Fetch users information including username, email
         async function fetchUser() {
             const results = await axios.get(requests.fetchUser + savedUser, {signal: abortCont.signal});
             setEmail(results.data.email);
@@ -52,6 +58,7 @@ const ProfilePage = () => {
         clearErrors();
     }
 
+    // Creates a request that updates the user information.
     const updateUser = async () => {
         // Validate username & email
         let validEmail = validateEmail(email);
