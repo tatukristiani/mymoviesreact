@@ -5,14 +5,19 @@ import convertMinutesToString from "../utility/ConvertMinutesToString";
 import {UserMoviesContext} from "../utility/UserMoviesContext";
 import '../styles/MyMovies.css';
 
-// MyMovies displays users watched movies. Users movies are saved to a UserMoviesContext on login & accessed throug "savedUserMovies" context variable.
+
+/**
+ *  MyMovies displays users watched movies. Users movies are saved to a UserMoviesContext on login
+ * @returns {JSX.Element} elements which contains movies that the user has added to their list.
+ * @constructor Creates the MyMovies component.
+ */
 const MyMovies = () => {
-    const {savedUser} = useContext(UserContext);
-    const {savedUserMovies} = useContext(UserMoviesContext);
-    const [totalTime, setTotalTime] = useState(0);
+    const {savedUser} = useContext(UserContext); // Logged in user
+    const {savedUserMovies} = useContext(UserMoviesContext); // Logged in users movies.
+    const [totalTime, setTotalTime] = useState(0); // Total time spent on movies.
 
 
-
+    // When savedUserMovies is changed, the total time is then updated.
     useEffect(() => {
         let totalRuntimeCount = 0;
         savedUserMovies.forEach(movie => {

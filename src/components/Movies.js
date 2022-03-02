@@ -9,18 +9,24 @@ import '../styles/Movies.css';
 import Paginate from "./Paginate";
 
 
-
+/**
+ * List of movies to be shown at page. This is mostly used all around but works only when searching with genre.
+ * Need the code param from the url to get succeeded results.
+ * @returns {JSX.Element} Element that has Movie components and  Paginate component for genre selection.
+ * @constructor Creates the Movies component.
+ */
 const Movies = () => {
     const [movies,setMovies] = useState([]);
     const {code} = useParams(); // Code for the genre.
     const [codeValid, setCodeValid] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
 
+
     const handlePageClick = (data) => {
         setCurrentPage(data.selected + 1);
     }
 
-    
+    // If code, codeValid or page changes fetch new movies.
     useEffect(() => {
         const abortCont = new AbortController();
         checkCodeValidity();

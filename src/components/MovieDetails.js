@@ -12,9 +12,14 @@ import DateFormatter from "../utility/DateFormatter";
 import {UserMoviesContext} from "../utility/UserMoviesContext";
 import requests from "../utility/request";
 
-
+// Path to the request
 const URL_PATH = "/movies";
 
+/**
+ * Displays details about a movie.
+ * @returns {JSX.Element} Elements that contains some information about the movie and a trailer for the movie.
+ * @constructor Creates the MovieDetails component.
+ */
 const MovieDetails = () => {
     const {savedUser} = useContext(UserContext);
     const {id} = useParams(); // Id for the movie
@@ -23,6 +28,7 @@ const MovieDetails = () => {
     const {savedUserMovies, setSavedUserMovies} = useContext(UserMoviesContext);
     const [watched, setWatched] = useState(false);
 
+    // Handles adding the movie to the users database.
     const handleAddMovie = async () => {
         // Confirm that we have actual data to send.
         if (movie != null && movie.title) {
@@ -61,6 +67,7 @@ const MovieDetails = () => {
         }
     }
 
+    // Handles the removal of the movie from the database.
     const handleRemoveMovie = async () => {
         try {
             const response = await axiosOwn.delete(URL_PATH + "?user=" + savedUser + "&title=" + movie.title + "&tmdbid=" + movie.id);
