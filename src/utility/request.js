@@ -9,7 +9,8 @@ const requests = {
     updatePassword: `/update-password`,
     register: `/register`,
     fetchUser: `/users?username=`,
-    updateUser: `/users`
+    updateUser: `/users`,
+    login: `/login`
 }
 
 export default requests;

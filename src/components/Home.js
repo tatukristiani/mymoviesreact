@@ -6,18 +6,25 @@ import requests from "../utility/request";
 import '../styles/Movies.css';
 import Paginate from "./Paginate";
 
-
+/**
+ * Home page of the site, at the same time it's the "trending" genre.
+ * @returns {JSX.Element} Home component with trending movies.
+ * @constructor Creates the Home component
+ */
 const Home = () => {
-    const [movies,setMovies] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [movies,setMovies] = useState([]); // Movies to be shown. If there are no movies then no movies are shown.
+    const [currentPage, setCurrentPage] = useState(1); // Currentpage, using paginate.
 
+    // Handles the page click on the paginate.
     const handlePageClick = (data) => {
         setCurrentPage(data.selected + 1);
     }
 
+    // When page is changes, fetches new movies with the page number from trending movies.
     useEffect(() => {
         const abortCont = new AbortController();
 
+        // Fetch the movies with the given page and filters the movies so that if they don't have a poster/image they won't be included.
         async function fetchData(page) {
             const request = await axios.get(requests.fetchTrending + page, {signal: abortCont.signal});
             let filterMovies = request.data.filter(movie => {

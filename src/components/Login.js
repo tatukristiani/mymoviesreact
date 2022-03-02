@@ -1,35 +1,41 @@
 import React, {useEffect, useState, useRef, useContext} from 'react';
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import axios from '../api/axios';
 import '../styles/Login.css';
 import {Link} from "react-router-dom";
 import {UserContext} from "../utility/UserContext";
+import requests from "../utility/request";
 
-const LOGIN_URL = '/login'
-
+/**
+ * Login component where user can sing in to the application.
+ * @returns {JSX.Element} form type of elements where user can provide username and passwors to login. Also Forgot password link and register link.
+ * @constructor Creates the login "form"
+ */
 const Login = () => {
-    const {savedUser, setSavedUser} = useContext(UserContext);
-    const history = useHistory();
+    const {setSavedUser} = useContext(UserContext); // Used to set the user to the context that is available on all of the component in the application.
+    const history = useHistory(); // Used to push user to home page after successfully login.
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, setUser] = useState('');
-    const [pwd, setPwd] = useState('');
-    const [errMsg, setErrMsg] = useState('');
-    const [pending, setPending] = useState(false);
-    const [login, setLogin] = useState('Sign In');
+    const [user, setUser] = useState(''); // For the input field of username.
+    const [pwd, setPwd] = useState(''); // For the input field of password.
+    const [errMsg, setErrMsg] = useState(''); // Error mesage for errors.
+    const [pending, setPending] = useState(false); // Sets the login buttons text when trying to log in.
+    const [login, setLogin] = useState('Sign In'); // The text for the login button, set to different after clicked the login button.
 
+    // Data to send to the API.
     const account = {
         username: user,
         password: pwd
     }
 
-    // Handles login submit. ATM working without jsonwebtoken and without credentials(API accepts all origins)
+    // Handles the request to the API with the given data.
+    // On success send user to home page, on failure displays an error message.
     const handleSubmit = async (e) => {
         e.preventDefault();
         setPending(true);
         try {
-            const response = await axios.post(LOGIN_URL, account,
+            await axios.post(requests.login, account,
                 {
                     headers: {'Content-Type': 'application/json'}
                 });
@@ -57,7 +63,7 @@ const Login = () => {
     // On load focus on username field.
     useEffect(() => {
         userRef.current.focus();
-        },[])
+    }, [])
 
 
     // Disables error messages when username or password is changed.
@@ -65,8 +71,9 @@ const Login = () => {
         setErrMsg('');
     }, [user, pwd])
 
+    // Sets the login buttons text according to pending state.
     useEffect(() => {
-        if(pending) {
+        if (pending) {
             setLogin("Signing In...");
         } else {
             setLogin("Sign In");
@@ -74,9 +81,10 @@ const Login = () => {
     }, [pending])
 
     return (
-
+        <>
             <form autoComplete='off' className='form' onSubmit={handleSubmit}>
-                <p ref={errRef} className={errMsg ? "error-message" : "off-screen"} aria-live="assertive">{errMsg}</p>
+                <p ref={errRef} className={errMsg ? "error-message" : "off-screen"}
+                   aria-live="assertive">{errMsg}</p>
                 <div className='control'>
                     <h1>
                         Sign In
@@ -142,7 +150,7 @@ const Login = () => {
                     Forgot Password?
                 </Link>
             </form>
-
+        </>
     )
 };
 
