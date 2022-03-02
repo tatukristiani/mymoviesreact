@@ -2,7 +2,11 @@ import React from 'react';
 import '../styles/Footer.css';
 import Logo from '../images/TMDB_Logo.svg';
 
-
+/**
+ * Component that is used to create a Footer element.
+ * @returns {JSX.Element} Element that contains information about the creator and credits to TMDB
+ * @constructor Creates the footer component with the hardcoded elements.
+ */
 const Footer = () => {
 
     return(

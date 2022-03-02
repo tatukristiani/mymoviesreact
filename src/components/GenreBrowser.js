@@ -3,10 +3,16 @@ import {Link, useParams} from "react-router-dom";
 import '../styles/GenreBrowser.css';
 import {useEffect, useState} from "react";
 
+/**
+ * Navigation for selecting movies by genre.
+ * @returns {JSX.Element} List of genre texts that will redirect the user to page where the genre leads.
+ * @constructor Creates the GenreBrowser element.
+ */
 const GenreBrowser = () => {
-    const [genre, setGenre] = useState('');
-    const {code} = useParams();
+    const [genre, setGenre] = useState(''); // Current genres state
+    const {code} = useParams(); // Used from url parameter, change of code means that the user wants to see another movies.
 
+    // Everytime code or genre changes, checks the current genre and sets the genre state accordingly.
     useEffect(() => {
         const checkCurrentGenre = () => {
             if(code == undefined) {
