@@ -31,6 +31,9 @@ It will also tell how much is the total time of those movies and how many movies
 If there are movies available with the title you've provided they will show up on the screen and this page follows the same principle as in **Browse** -> click the movie etc.    
 4. **Sign In** , here you can Sign In or Register a new account.   
 The page displays these options clearly, just follow the normal steps as you would on any other website that has a Sign In/Register.    
-5. **Logout** , after you've logged in a "Logout" button will appear and by clicking it you will be logged out.    
+5. **Logout** , after you've logged in a "Logout" button will appear and by clicking it you will be logged out.  
+6. **Forgot Password** , in case you forgot your password there is a button located on **Sign In**.    
+First you'll need to provide your accounts email, then you'll reveive an email that has a reset link that sends to you another page where you can reset your password.   
+**NOTE! THIS EMAIL MIGHT BE LOCATED IN YOU SPAM SECTION**  
 
 One thing to note is that currently the application logs you out if you close the windows, so there is no way of saving the session at this moment.
