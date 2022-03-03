@@ -19,9 +19,10 @@ This project uses GitHub Pages to deploy the website.
 This project utilized React.js to build the front-end and also node.js was used in the process.   
 IDE used for the project was WebStorms 2021.3.2 version.  
 The REST API is hosted on heroku and the source code can be found here -> [REST API](https://github.com/tatukristiani/mymoviesapi)  
+Swagger documentation is also available for the REST API here -> [Swagger Documentation](https://moviesoftwareapi.herokuapp.com/api/api-docs/)
 
 
-# Some of the functionalities of the softare
+# Some of the functionalities of the software
 1. **Browse** , here you can browse movies by genre.     
 The application shows the movies posters/images and by clicking on them it will take you to a page where you can view some details about the movie and the trailer of the movie.     
 Here you can also add the movie to your list IF you are logged in, since adding movies is only for possible when logged in.      
