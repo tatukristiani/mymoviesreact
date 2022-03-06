@@ -20,6 +20,7 @@ import GenreBrowser from "./components/GenreBrowser";
 import ForgotPassword from "./components/ForgotPassword";
 import UpdatePassword from "./components/UpdatePassword";
 import ProfilePage from "./components/ProfilePage";
+import Genres from "./utility/Genres";
 
 /**
  * Root component of the application.
@@ -29,6 +30,38 @@ import ProfilePage from "./components/ProfilePage";
 const App = () => {
     const [savedUser, setSavedUser] = useState(null);
     const [savedUserMovies, setSavedUserMovies] = useState([]);
+
+    // Testing for speeding up the browsing.
+    const [actionMovies, setActionMovies] = useState([]);
+    const [romanceMovies, setRomanceMovies] = useState([]);
+    const [docMovies, setDocMovies] = useState([]);
+    const [comedyMovies, setComedyMovies] = useState([]);
+    const [horrorMovies, setHorrorMovies] = useState([]);
+    const [trendingMovies, setTrendingMovies] = useState([]);
+
+    useEffect(() => {
+        console.log("Fetching trending");
+        const trending = fetchMovies(requests.fetchTrending);
+        const horror = fetchMovies(requests.fetchGenre + Genres.HORROR + "&page=");
+        const action = fetchMovies(requests.fetchGenre + Genres.ACTION + "&page=");
+        const comedy = fetchMovies(requests.fetchGenre + Genres.COMEDY + "&page=");
+        const romance = fetchMovies(requests.fetchGenre + Genres.ROMANCE + "&page=");
+        const doc = fetchMovies(requests.fetchGenre + Genres.DOCS + "&page=");
+    },[]);
+
+    async function fetchMovies(url) {
+        let trendingMovies = [];
+        for(let page = 1; page <= 50; page++) {
+            let request = await axios.get(url + page);
+            let filterMovies = request.data.filter(movie => {
+                if (movie.poster_path !== null) {
+                    return movie;
+                }
+            })
+            trendingMovies.push.apply(trendingMovies, filterMovies);
+        }
+        setTrendingMovies(trendingMovies);
+    }
 
     // Effect used when savedUser is changed. Fetches the currently logged-in users movies and saves them to savedUserMovies.
     useEffect( () => {
