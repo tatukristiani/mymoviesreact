@@ -5,6 +5,9 @@ import '../styles/Register.css';
 import { useHistory } from "react-router-dom";
 import {Link} from "react-router-dom";
 import requests from "../utility/request";
+import validateEmail from "../utility/ValidateEmail";
+import validateCredential from "../utility/ValidateCredentials";
+import validatePassword from "../utility/validatePassword";
 
 // Register buttons text
 const REGISTER = 'Register';
@@ -14,6 +17,10 @@ const CREATING_ACCOUNT = 'Creating Account...';
 
 // If Succeeded register this text will appear
 const PROCEED_TEXT = 'You will be redirected to login in a few seconds.';
+
+const EMAIL_ERROR = "Format must be type xxx@yyy.zzz";
+const USER_ERROR = "Username can't contain any special characters & length between 4-20!";
+const PASS_ERROR = "Password length must be between 4-20!";
 
 /**
  * Register form where user can create and account.
@@ -31,6 +38,9 @@ const Register = () => {
     const [pending, setPending] = useState(false);
     const [register, setRegister] = useState(REGISTER);
     const [success, setSuccess] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [userError, setUserError] = useState('');
+    const [passError, setPassError] = useState('');
 
 
     // Send the request to register a new user.
@@ -38,32 +48,48 @@ const Register = () => {
     // On failure an error message is displayed.
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setPending(true);
+        const validEmail = validateEmail(email);
+        const validUser = validateCredential(user);
+        const validPass = validatePassword(pwd);
 
-        const account = {username: user, password: pwd, email: email};
+        if(validEmail && validUser && validPass) {
+            setPending(true);
 
-        try {
-            const response = await axios.post(requests.register, account);
-            setEmail('');
-            setUser('');
-            setPwd('');
-            setSuccess(response.data.message + " " + PROCEED_TEXT);
-        } catch (err) {
-            if (!err?.response) {
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 403) {
-                setErrMsg(err.response?.data.error);
-            } else if (err.response?.status === 500) {
-                setErrMsg('Internal problems. Apologies.')
-            } else {
-                setErrMsg('Register Failed.')
+            const account = {username: user, password: pwd, email: email};
+
+            try {
+                const response = await axios.post(requests.register, account);
+                setEmail('');
+                setUser('');
+                setPwd('');
+                setSuccess(response.data.message + " " + PROCEED_TEXT);
+            } catch (err) {
+                if (!err?.response) {
+                    setErrMsg('No Server Response');
+                } else if (err.response?.status === 403) {
+                    setErrMsg(err.response?.data.error);
+                } else if (err.response?.status === 500) {
+                    setErrMsg('Internal problems. Apologies.')
+                } else {
+                    setErrMsg('Register Failed.')
+                }
+                errRef.current.focus();
             }
-            errRef.current.focus();
+            setPending(false);
+            setTimeout(() => {
+                history.push("/login");
+            }, 10000);
+        } else {
+            if(!validEmail) {
+                setEmailError(EMAIL_ERROR);
+            }
+            if(!validUser) {
+                setUserError(USER_ERROR);
+            }
+            if(!validPass) {
+                setPassError(PASS_ERROR);
+            }
         }
-        setPending(false);
-        setTimeout(() => {
-            history.push("/login");
-        }, 10000);
     }
 
     // On load focus on username field.
@@ -72,9 +98,15 @@ const Register = () => {
     },[])
 
 
+    const disableErrors = () => {
+        setErrMsg('');
+        setUserError('');
+        setPassError('');
+        setEmailError('');
+    }
     // Disables error messages when username or password is changed.
     useEffect(() => {
-        setErrMsg('');
+        disableErrors();
     }, [user, pwd, email])
 
     // Sets the Register text on the button to Creating Account for clarity.
@@ -116,6 +148,9 @@ const Register = () => {
                         <div className='bg-inner'></div>
                     </div>
                 </div>
+                <div className='error-div'>
+                    {emailError && <span className='login-error'>{emailError}</span>}
+                </div>
                 <div className='control block-cube block-input'>
                     <input
                         placeholder='Enter Username'
@@ -136,6 +171,9 @@ const Register = () => {
                         <div className='bg-inner'></div>
                     </div>
                 </div>
+                <div className='error-div'>
+                    {userError && <span className='login-error'>{userError}</span>}
+                </div>
                 <div className='control block-cube block-input'>
                     <input placeholder='Enter Password'
                            type="password"
@@ -153,6 +191,9 @@ const Register = () => {
                     <div className='bg'>
                         <div className='bg-inner'></div>
                     </div>
+                </div>
+                <div className='error-div'>
+                    {passError && <span className='login-error'>{passError}</span>}
                 </div>
                 <button className='btn block-cube block-cube-hover' type='submit'>
                     <div className='bg-top'>

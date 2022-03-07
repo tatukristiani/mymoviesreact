@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import {UserContext} from "../utility/UserContext";
 import requests from "../utility/request";
 import validateCredential from "../utility/ValidateCredentials";
+import validatePassword from "../utility/validatePassword";
 
 
 const USER_ERROR = "Invalid username format!";
@@ -40,7 +41,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const validUsername = validateCredential(user);
-        const validPass = validateCredential(pwd);
+        const validPass = validatePassword(pwd);
 
         // If username and password are valid continue.
         if(validUsername && validPass) {
