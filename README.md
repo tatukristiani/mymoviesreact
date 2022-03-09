@@ -1,7 +1,6 @@
 # My Movies Websoftware project
 
 This project is a school/hobby project that was first designed to run locally but later on made public.  
-Estimated time spent: v1 = 2 Weeks + v2 = 3 weeks  
   
 The URL for the website is -> [My Movies](https://tatukristiani.github.io/mymoviesreact/)
 
@@ -17,7 +16,6 @@ The application provides information about how many movies you've seen so far (a
 # Technicalities
 This project uses GitHub Pages to deploy the website.  
 This project utilized React.js to build the front-end and also node.js was used in the process.   
-IDE used for the project was WebStorms 2021.3.2 version.  
 The REST API is hosted on heroku and the source code can be found here -> [REST API](https://github.com/tatukristiani/mymoviesapi)  
 Swagger documentation is also available for the REST API here -> [Swagger Documentation](https://moviesoftwareapi.herokuapp.com/api/api-docs/)   
 **NOTE!** The Swagger document doesn't use a real server for security reasons, but the routes and everything else is correct.
