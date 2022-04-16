@@ -5,7 +5,12 @@ import '../styles/Login.css';
 import {Link} from "react-router-dom";
 import {UserContext} from "../utility/UserContext";
 import requests from "../utility/request";
+import validateCredential from "../utility/ValidateCredentials";
+import validatePassword from "../utility/validatePassword";
 
+
+const USER_ERROR = "Invalid username format!";
+const PASS_ERROR = "Invalid password format!";
 /**
  * Login component where user can sing in to the application.
  * @returns {JSX.Element} form type of elements where user can provide username and passwors to login. Also Forgot password link and register link.
@@ -22,6 +27,8 @@ const Login = () => {
     const [errMsg, setErrMsg] = useState(''); // Error mesage for errors.
     const [pending, setPending] = useState(false); // Sets the login buttons text when trying to log in.
     const [login, setLogin] = useState('Sign In'); // The text for the login button, set to different after clicked the login button.
+    const [errUser, setErrUser] = useState('');
+    const [errPass, setErrorPass] = useState('');
 
     // Data to send to the API.
     const account = {
@@ -33,31 +40,44 @@ const Login = () => {
     // On success send user to home page, on failure displays an error message.
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setPending(true);
-        try {
-            await axios.post(requests.login, account,
-                {
-                    headers: {'Content-Type': 'application/json'}
-                });
-            setUser('');
-            setPwd('');
-            setSavedUser(account.username);
-            history.push("/");
-        } catch (err) {
-            if (!err?.response) {
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 400) {
-                setErrMsg('Missing Username or Password');
-            } else if (err.response?.status === 401) {
-                setErrMsg('Invalid credentials!');
-            } else if (err.response?.status === 500) {
-                setErrMsg('Internal problems. Apologies.')
-            } else {
-                setErrMsg('Login Failed')
+        const validUsername = validateCredential(user);
+        const validPass = validatePassword(pwd);
+
+        // If username and password are valid continue.
+        if(validUsername && validPass) {
+            setPending(true);
+            try {
+                await axios.post(requests.login, account,
+                    {
+                        headers: {'Content-Type': 'application/json'}
+                    });
+                setUser('');
+                setPwd('');
+                setSavedUser(account.username);
+                history.push("/");
+            } catch (err) {
+                if (!err?.response) {
+                    setErrMsg('No Server Response');
+                } else if (err.response?.status === 400) {
+                    setErrMsg('Missing Username or Password');
+                } else if (err.response?.status === 401) {
+                    setErrMsg('Invalid credentials!');
+                } else if (err.response?.status === 500) {
+                    setErrMsg('Internal problems. Apologies.')
+                } else {
+                    setErrMsg('Login Failed')
+                }
+                errRef.current.focus();
             }
-            errRef.current.focus();
+            setPending(false);
+        } else if(!validUsername && !validPass) { // Both invalid.
+            setErrUser(USER_ERROR);
+            setErrorPass(PASS_ERROR);
+        } else if(validUsername){ // Pass invalid
+            setErrorPass(PASS_ERROR);
+        } else { // Username invalid
+            setErrUser(USER_ERROR);
         }
-        setPending(false);
     }
 
     // On load focus on username field.
@@ -69,6 +89,8 @@ const Login = () => {
     // Disables error messages when username or password is changed.
     useEffect(() => {
         setErrMsg('');
+        setErrUser('');
+        setErrorPass('');
     }, [user, pwd])
 
     // Sets the login buttons text according to pending state.
@@ -111,6 +133,9 @@ const Login = () => {
                         <div className='bg-inner'></div>
                     </div>
                 </div>
+                <div className="error-div">
+                    {errUser && <span className='login-error'>{errUser}</span>}
+                </div>
                 <div className='control block-cube block-input'>
                     <input placeholder='Password'
                            type="password"
@@ -128,6 +153,9 @@ const Login = () => {
                     <div className='bg'>
                         <div className='bg-inner'></div>
                     </div>
+                </div>
+                <div className="error-div">
+                    {errPass && <span className='login-error'>{errPass}</span>}
                 </div>
                 <button className='btn block-cube block-cube-hover' type='submit'>
                     <div className='bg-top'>

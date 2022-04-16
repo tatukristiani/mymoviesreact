@@ -1,8 +1,8 @@
 
 
 /**
- *  Used to validate username and password. Check if the string has between 4-20 characters.
- * @param credentialToValidate username or password to validate.
+ *  Used to validate username. Check if the string has between 4-20 characters.
+ * @param credentialToValidate username
  * @returns {boolean} valid = true, inValid = false
  */
 export default function validateCredential(credentialToValidate) {
