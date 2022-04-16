@@ -41,16 +41,17 @@ const App = () => {
 
     useEffect(() => {
         console.log("Fetching trending");
-        const trending = fetchMovies(requests.fetchTrending);
-        const horror = fetchMovies(requests.fetchGenre + Genres.HORROR + "&page=");
-        const action = fetchMovies(requests.fetchGenre + Genres.ACTION + "&page=");
-        const comedy = fetchMovies(requests.fetchGenre + Genres.COMEDY + "&page=");
-        const romance = fetchMovies(requests.fetchGenre + Genres.ROMANCE + "&page=");
-        const doc = fetchMovies(requests.fetchGenre + Genres.DOCS + "&page=");
+        setTrendingMovies(fetchMovies(requests.fetchTrending));
+        setHorrorMovies(fetchMovies(requests.fetchGenre + Genres.HORROR + "&page="));
+        setActionMovies(fetchMovies(requests.fetchGenre + Genres.ACTION + "&page="));
+        setComedyMovies(fetchMovies(requests.fetchGenre + Genres.COMEDY + "&page="));
+        setRomanceMovies(fetchMovies(requests.fetchGenre + Genres.ROMANCE + "&page="));
+        setDocMovies(fetchMovies(requests.fetchGenre + Genres.DOCS + "&page="));
+        console.log("Movies fetched!")
     },[]);
 
     async function fetchMovies(url) {
-        let trendingMovies = [];
+        let movies = [];
         for(let page = 1; page <= 50; page++) {
             let request = await axios.get(url + page);
             let filterMovies = request.data.filter(movie => {
@@ -58,9 +59,9 @@ const App = () => {
                     return movie;
                 }
             })
-            trendingMovies.push.apply(trendingMovies, filterMovies);
+            movies.push.apply(movies, filterMovies);
         }
-        setTrendingMovies(trendingMovies);
+        return movies;
     }
 
     // Effect used when savedUser is changed. Fetches the currently logged-in users movies and saves them to savedUserMovies.
