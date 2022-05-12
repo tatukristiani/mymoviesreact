@@ -58,15 +58,12 @@ const Home = ({trendingMovies}) => {
             {movies ? (
                 <div>
                     <div className="home-container">
-                        {movies.map((movie => (
+                        {movies[1].map((movie => (
                             <Movie key={movie.id} movie={movie} databaseData={false}/>
                         )))}
                     </div>
                     <div className='paginate-container'>
                         <Paginate onPageChange={handlePageClick}/>
-                    </div>
-                    <div>
-                        <button onClick={() => console.log(movies)}>Press me!</button>
                     </div>
                 </div>
             ) : (

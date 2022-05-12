@@ -56,7 +56,7 @@ const App = () => {
             let request = await axios.get(url + page);
             // CHANGE!! Filter removed from inside of loop to outside.
             movies.push.apply(movies, request.data);
-            console.log("Request data: " + request.data);
+            console.log("Request data: " + request.data[1].title);
         }
         movies = movies.filter(movie => {
             if (movie.poster_path !== null) {
