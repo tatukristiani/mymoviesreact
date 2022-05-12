@@ -56,6 +56,8 @@ const Home = (trendingMovies) => {
     const testMovie = () => {
         console.log("Test log");
         console.log(movies.length);
+        console.log(trendingMovies);
+        console.log(trendingMovies.length);
         for(let i = 0; i < movies.length; i++) {
            console.log(movies[i].title);
         }
