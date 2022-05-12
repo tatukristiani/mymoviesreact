@@ -44,17 +44,21 @@ const Home = ({trendingMovies}) => {
             switch (loadingText) {
                 case "Loading.":
                     setLoadingText("Loading..");
+                    setTimeout(500);
                     break;
                 case "Loading..":
                     setLoadingText("Loading...");
+                    setTimeout(500);
                     break;
                 case "Loading...":
                     setLoadingText("Loading.");
+                    setTimeout(500);
                 default:
                     setLoadingText("Loading.");
+                    setTimeout(500);
             }
         }
-    })
+    },[loadingText])
 
     return (
         <>

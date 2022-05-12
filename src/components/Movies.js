@@ -15,17 +15,56 @@ import Paginate from "./Paginate";
  * @returns {JSX.Element} Element that has Movie components and  Paginate component for genre selection.
  * @constructor Creates the Movies component.
  */
-const Movies = () => {
+const Movies = ({actionMovies, docMovies, romanceMovies, horrorMovies, comedyMovies}) => {
     const [movies,setMovies] = useState([]);
     const {code} = useParams(); // Code for the genre.
     const [codeValid, setCodeValid] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
+    const [moviesPerPage, setMoviesPerPage] = useState(28);
 
+
+    const indexOfLastMovie = currentPage * moviesPerPage;
+    const indexOfFirstPost = indexOfLastMovie - moviesPerPage;
+    const currentMovies = movies.slice(indexOfFirstPost, indexOfLastMovie);
 
     const handlePageClick = (data) => {
         setCurrentPage(data.selected + 1);
     }
 
+
+    const checkGenre = () => {
+        switch(code) {
+            case Genres.ACTION:
+                setCodeValid(true);
+                setMovies(actionMovies);
+                break;
+            case Genres.DOCS:
+                setCodeValid(true);
+                setMovies(docMovies);
+                break;
+            case Genres.ROMANCE:
+                setCodeValid(true);
+                setMovies(romanceMovies);
+                break;
+            case Genres.COMEDY:
+                setCodeValid(true);
+                setMovies(comedyMovies);
+                break;
+            case Genres.HORROR:
+                setCodeValid(true);
+                setMovies(horrorMovies);
+                break;
+            default:
+                setCodeValid(false);
+                break;
+        }
+    }
+
+    useEffect(() => {
+        checkGenre();
+    },[actionMovies,docMovies,romanceMovies,horrorMovies,comedyMovies])
+
+    /*
     // If code, codeValid or page changes fetch new movies.
     useEffect(() => {
         const abortCont = new AbortController();
@@ -65,13 +104,14 @@ const Movies = () => {
         }
         return () => abortCont.abort();
     },[code, codeValid, currentPage]);
-    
+    */
+
     return (
         <>
             {codeValid ? (
                 <div>
                     <div className="home-container">
-                        {movies.map((movie => (
+                        {currentMovies.map((movie => (
                             <Movie key={movie.id} movie={movie} databaseData={false}/>
                         )))}
                     </div>
