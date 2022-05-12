@@ -55,10 +55,7 @@ const Home = ({trendingMovies}) => {
 
     const testMovie = () => {
         for(let i = 0; i < movies.length; i++) {
-            let page = movies[i];
-            for(let j = 0; j < page.length; j++) {
-                console.log(page[j].title);
-            }
+           console.log(movies[i].title);
         }
     }
     return (
@@ -71,9 +68,6 @@ const Home = ({trendingMovies}) => {
                             <Movie key={movie.id} movie={movie} databaseData={false}/>
                         )))}
                         */}
-                        <button onClick={() => console.log(movies[1][1].title)}>Title 1</button>
-                        <button onClick={() => console.log(movies[1].title)}>Title 2</button>
-                        <button onClick={() => console.log(movies[1][1].title)}>Title 3</button>
                         <button onClick={() => testMovie()}>test movie</button>
                         <button onClick={() => testMovie}>test movie 2</button>
                     </div>
