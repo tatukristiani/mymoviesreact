@@ -12,6 +12,7 @@ import Paginate from "./Paginate";
  * @constructor Creates the Home component
  */
 const Home = (trendingMovies) => {
+    const [loading, setLoading] = useState(false);
     const [movies,setMovies] = useState([]); // Movies to be shown. If there are no movies then no movies are shown.
     const [currentPage, setCurrentPage] = useState(1); // Currentpage, using paginate.
 
@@ -21,8 +22,13 @@ const Home = (trendingMovies) => {
     }
 
     useEffect(() => {
+        if(movies == null) {
+            console.log("movies is null");
+        }
+        setLoading(true);
         setMovies(trendingMovies);
-    }, [trendingMovies])
+        setLoading(false);
+    }, [])
 
     /* OLD WAY TO RENDER MOVIES!
     // When page is changes, fetches new movies with the page number from trending movies.
@@ -56,14 +62,24 @@ const Home = (trendingMovies) => {
     const testMovie = () => {
         console.log("Test log");
         console.log(movies.length);
+        console.log(movies);
         console.log(trendingMovies);
-        console.log(trendingMovies.length);
-        console.log(trendingMovies[0]);
-        console.log(trendingMovies[0].title);
         for(let i = 0; i < movies.length; i++) {
            console.log(movies[i].title);
         }
+        trendingMovies.forEach((movie => {
+            console.log("trend: " + movie);
+            console.log(movie.title);
+        }))
+        movies.forEach((movie => {
+            console.log("movie var: " + movie);
+            console.log(movie.title);
+        }))
     }
+    if(loading) {
+        return <h2>Loading...</h2>;
+    }
+
     return (
         <>
             {movies ? (
