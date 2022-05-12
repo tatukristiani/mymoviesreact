@@ -38,7 +38,6 @@ const App = () => {
     const [comedyMovies, setComedyMovies] = useState([]);
     const [horrorMovies, setHorrorMovies] = useState([]);
     const [trendingMovies, setTrendingMovies] = useState([]);
-    const arr = [1,2,3,4,5];
 
     useEffect(() => {
         console.log("Fetching trending");
@@ -51,10 +50,10 @@ const App = () => {
         console.log("Movies fetched!");
     },[]);
 
-    async function fetchMovies(url) {
+    function fetchMovies(url) {
         let movies = [];
         for(let page = 1; page <= 50; page++) {
-            let request = await axios.get(url + page);
+            let request = axios.get(url + page);
             // CHANGE!! Filter removed from inside of loop to outside.
             Array.prototype.push.apply(movies, request.data);
         }
@@ -130,7 +129,7 @@ const App = () => {
                         </Route>
                         <Route path='/'>
                             <GenreBrowser />
-                            <Home trendingMovies={trendingMovies} arr={arr} />
+                            <Home trendingMovies={trendingMovies} />
                         </Route>
                     </Switch>
                 </div>

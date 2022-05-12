@@ -11,7 +11,7 @@ import Paginate from "./Paginate";
  * @returns {JSX.Element} Home component with trending movies.
  * @constructor Creates the Home component
  */
-const Home = ({trendingMovies, arr}) => {
+const Home = ({trendingMovies}) => {
     const [movies,setMovies] = useState([]); // Movies to be shown. If there are no movies then no movies are shown.
     const [currentPage, setCurrentPage] = useState(1); // Currentpage, using paginate.
 
@@ -22,8 +22,6 @@ const Home = ({trendingMovies, arr}) => {
 
     useEffect(() => {
         setMovies(trendingMovies);
-        console.log("1: " + arr.arr);
-        console.log("2: " + arr);
     }, [trendingMovies])
 
 
@@ -60,7 +58,6 @@ const Home = ({trendingMovies, arr}) => {
         console.log("Test log");
         console.log(movies);
         console.log(trendingMovies);
-        console.log(arr);
     }
 
     return (
