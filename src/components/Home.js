@@ -15,26 +15,28 @@ const Home = ({trendingMovies}) => {
     const [movies,setMovies] = useState([]); // Movies to be shown. If there are no movies then no movies are shown.
     const [currentPage, setCurrentPage] = useState(1); // Currentpage, using paginate.
     const [moviesPerPage, setMoviesPerPage] = useState(20);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     // Handles the page click on the paginate.
     const handlePageClick = (data) => {
         setCurrentPage(data.selected + 1);
     }
 
+    const indexOfLastMovie = currentPage * moviesPerPage;
+    const indexOfFirstPost = indexOfLastMovie - moviesPerPage;
+    const currentMovies = movies.slice(indexOfFirstPost, indexOfLastMovie);
+
     useEffect(() => {
-        if(movies) {
-            console.log("movie is true");
-        }
         setLoading(true);
         setMovies(trendingMovies);
     }, [trendingMovies])
 
     useEffect(() => {
-        if(movies) {
+        if(movies.length > 1) {
             setLoading(false);
         }
     }, [movies])
+
     /* OLD WAY TO RENDER MOVIES!
     // When page is changes, fetches new movies with the page number from trending movies.
     useEffect(() => {
@@ -71,10 +73,10 @@ const Home = ({trendingMovies}) => {
 
     return (
         <>
-            {movies ? (
+            {!loading ? (
                 <div>
                     <div className="home-container">
-                        {movies.map((movie => (
+                        {currentMovies.map((movie => (
                             <Movie key={movie.id} movie={movie} databaseData={false}/>
                         )))}
                         <button onClick={testMovie}>test movie 2</button>
@@ -85,10 +87,15 @@ const Home = ({trendingMovies}) => {
                 </div>
             ) : (
                 <div className='movies-not-found'>
-                    <p>Sorry... no movies found with the given genre code.</p>
+                    <p>Loading...</p>
                 </div>
             )
             }
+            {/*
+                <div className='movies-not-found'>
+                    <p>Sorry... no movies found with the given genre code.</p>
+                </div>
+                */}
         </>
     );
 };

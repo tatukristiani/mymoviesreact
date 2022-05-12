@@ -62,7 +62,6 @@ const App = () => {
                 return movie;
             }
         })
-        console.log("Movies first: " + movies);
         return movies;
     }
 
