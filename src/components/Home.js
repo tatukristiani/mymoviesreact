@@ -57,7 +57,6 @@ const Home = ({trendingMovies}) => {
     const testMovie = () => {
         console.log("Test log");
         console.log(movies);
-        console.log(trendingMovies);
     }
 
     return (
@@ -65,11 +64,9 @@ const Home = ({trendingMovies}) => {
             {movies ? (
                 <div>
                     <div className="home-container">
-                        {/*
-                        {movies[1].map((movie => (
+                        {movies.map((movie => (
                             <Movie key={movie.id} movie={movie} databaseData={false}/>
                         )))}
-                        */}
                         <button onClick={testMovie}>test movie 2</button>
                     </div>
                     <div className='paginate-container'>

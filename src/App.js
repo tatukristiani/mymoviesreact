@@ -42,12 +42,11 @@ const App = () => {
     useEffect(() => {
         console.log("Fetching trending");
         fetchMovies(requests.fetchTrending).then(response => setTrendingMovies(response));
-        //setTrendingMovies(fetchMovies(requests.fetchTrending));
-        setHorrorMovies(fetchMovies(requests.fetchGenre + Genres.HORROR + "&page="));
-        setActionMovies(fetchMovies(requests.fetchGenre + Genres.ACTION + "&page="));
-        setComedyMovies(fetchMovies(requests.fetchGenre + Genres.COMEDY + "&page="));
-        setRomanceMovies(fetchMovies(requests.fetchGenre + Genres.ROMANCE + "&page="));
-        setDocMovies(fetchMovies(requests.fetchGenre + Genres.DOCS + "&page="));
+        fetchMovies(requests.fetchGenre + Genres.HORROR + "&page=").then(response => setHorrorMovies(response));
+        fetchMovies(requests.fetchGenre + Genres.ACTION + "&page=").then(response => setActionMovies(response));
+        fetchMovies(requests.fetchGenre + Genres.COMEDY + "&page=").then(response => setComedyMovies(response));
+        fetchMovies(requests.fetchGenre + Genres.ROMANCE + "&page=").then(response => setRomanceMovies(response));
+        fetchMovies(requests.fetchGenre + Genres.DOCS + "&page=").then(response => setDocMovies(response));
         console.log("Movies fetched!");
     },[]);
 
