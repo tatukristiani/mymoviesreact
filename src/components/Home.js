@@ -53,14 +53,29 @@ const Home = ({trendingMovies}) => {
     }, [currentPage]);
 */
 
+    const testMovie = () => {
+        for(let i = 0; i < movies.length; i++) {
+            let page = movies[i];
+            for(let j = 0; j < page.length; j++) {
+                console.log(page[j].title);
+            }
+        }
+    }
     return (
         <>
             {movies ? (
                 <div>
                     <div className="home-container">
+                        {/*
                         {movies[1].map((movie => (
                             <Movie key={movie.id} movie={movie} databaseData={false}/>
                         )))}
+                        */}
+                        <button onClick={() => console.log(movies[1][1].title)}>Title 1</button>
+                        <button onClick={() => console.log(movies[1].title)}>Title 2</button>
+                        <button onClick={() => console.log(movies[1][1].title)}>Title 3</button>
+                        <button onClick={() => testMovie()}>test movie</button>
+                        <button onClick={() => testMovie}>test movie 2</button>
                     </div>
                     <div className='paginate-container'>
                         <Paginate onPageChange={handlePageClick}/>
