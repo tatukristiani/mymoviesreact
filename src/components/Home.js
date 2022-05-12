@@ -11,7 +11,7 @@ import Paginate from "./Paginate";
  * @returns {JSX.Element} Home component with trending movies.
  * @constructor Creates the Home component
  */
-const Home = (trendingMovies) => {
+const Home = ({trendingMovies}) => {
     const [movies,setMovies] = useState([]); // Movies to be shown. If there are no movies then no movies are shown.
     const [currentPage, setCurrentPage] = useState(1); // Currentpage, using paginate.
 
@@ -22,9 +22,7 @@ const Home = (trendingMovies) => {
 
     useEffect(() => {
         setMovies(trendingMovies);
-        console.log("Movies variable: " + movies);
-        console.log("Prop: " + trendingMovies);
-    }, [trendingMovies, movies])
+    }, [trendingMovies])
 
     /* OLD WAY TO RENDER MOVIES!
     // When page is changes, fetches new movies with the page number from trending movies.
@@ -66,6 +64,9 @@ const Home = (trendingMovies) => {
                     </div>
                     <div className='paginate-container'>
                         <Paginate onPageChange={handlePageClick}/>
+                    </div>
+                    <div>
+                        <button onClick={() => console.log(movies)}>Press me!</button>
                     </div>
                 </div>
             ) : (

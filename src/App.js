@@ -47,8 +47,7 @@ const App = () => {
         setComedyMovies(fetchMovies(requests.fetchGenre + Genres.COMEDY + "&page="));
         setRomanceMovies(fetchMovies(requests.fetchGenre + Genres.ROMANCE + "&page="));
         setDocMovies(fetchMovies(requests.fetchGenre + Genres.DOCS + "&page="));
-        console.log("Movies fetched!")
-        console.log("Action Movies: " + actionMovies);
+        console.log("Movies fetched!");
     },[]);
 
     async function fetchMovies(url) {
@@ -57,8 +56,9 @@ const App = () => {
             let request = await axios.get(url + page);
             // CHANGE!! Filter removed from inside of loop to outside.
             movies.push.apply(movies, request.data);
+            console.log("Request data: " + request.data);
         }
-        movies.filter(movie => {
+        movies = movies.filter(movie => {
             if (movie.poster_path !== null) {
                 return movie;
             }
