@@ -41,7 +41,8 @@ const App = () => {
 
     useEffect(() => {
         console.log("Fetching trending");
-        setTrendingMovies(fetchMovies(requests.fetchTrending));
+        fetchMovies(requests.fetchTrending).then(response => setTrendingMovies(response));
+        //setTrendingMovies(fetchMovies(requests.fetchTrending));
         setHorrorMovies(fetchMovies(requests.fetchGenre + Genres.HORROR + "&page="));
         setActionMovies(fetchMovies(requests.fetchGenre + Genres.ACTION + "&page="));
         setComedyMovies(fetchMovies(requests.fetchGenre + Genres.COMEDY + "&page="));
