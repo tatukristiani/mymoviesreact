@@ -48,19 +48,21 @@ const App = () => {
         setRomanceMovies(fetchMovies(requests.fetchGenre + Genres.ROMANCE + "&page="));
         setDocMovies(fetchMovies(requests.fetchGenre + Genres.DOCS + "&page="));
         console.log("Movies fetched!")
+        console.log("Action Movies: " + actionMovies);
     },[]);
 
     async function fetchMovies(url) {
         let movies = [];
         for(let page = 1; page <= 50; page++) {
             let request = await axios.get(url + page);
-            let filterMovies = request.data.filter(movie => {
-                if (movie.poster_path !== null) {
-                    return movie;
-                }
-            })
-            movies.push.apply(movies, filterMovies);
+            // CHANGE!! Filter removed from inside of loop to outside.
+            movies.push.apply(movies, request.data);
         }
+        movies.filter(movie => {
+            if (movie.poster_path !== null) {
+                return movie;
+            }
+        })
         return movies;
     }
 
@@ -121,11 +123,13 @@ const App = () => {
                         </Route>
                         <Route exact path='/movies/genre/:code'>
                             <GenreBrowser />
-                            <Movies />
+                            <Movies actionMovies={actionMovies} docMovies={docMovies} romanceMovies={romanceMovies}
+                                    horrorMovies={horrorMovies} comedyMovies={comedyMovies}
+                            />
                         </Route>
                         <Route path='/'>
                             <GenreBrowser />
-                            <Home />
+                            <Home trendingMovies={trendingMovies} />
                         </Route>
                     </Switch>
                 </div>
