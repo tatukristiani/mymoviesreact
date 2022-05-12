@@ -14,6 +14,8 @@ import Paginate from "./Paginate";
 const Home = ({trendingMovies}) => {
     const [movies,setMovies] = useState([]); // Movies to be shown. If there are no movies then no movies are shown.
     const [currentPage, setCurrentPage] = useState(1); // Currentpage, using paginate.
+    const [moviesPerPage, setMoviesPerPage] = useState(20);
+    const [loading, setLoading] = useState(false);
 
     // Handles the page click on the paginate.
     const handlePageClick = (data) => {
@@ -21,10 +23,18 @@ const Home = ({trendingMovies}) => {
     }
 
     useEffect(() => {
+        if(movies) {
+            console.log("movie is true");
+        }
+        setLoading(true);
         setMovies(trendingMovies);
     }, [trendingMovies])
 
-
+    useEffect(() => {
+        if(movies) {
+            setLoading(false);
+        }
+    }, [movies])
     /* OLD WAY TO RENDER MOVIES!
     // When page is changes, fetches new movies with the page number from trending movies.
     useEffect(() => {
