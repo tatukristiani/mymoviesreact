@@ -66,7 +66,10 @@ const Home = (trendingMovies) => {
         console.log(movies);
         console.log(trendingMovies);
         console.log(trendingMovies.trendingMovies);
-        console.log(trendingMovies.trendingMovies[1].title);
+        console.log(trendingMovies.trendingMovies.results);
+        console.log(trendingMovies.trendingMovies.result);
+        console.log(trendingMovies.trendingMovies.results[0].title);
+        console.log(trendingMovies.trendingMovies.result[0].title);
     }
 
     return (
