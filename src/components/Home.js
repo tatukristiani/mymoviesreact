@@ -65,17 +65,8 @@ const Home = (trendingMovies) => {
         console.log(movies.length);
         console.log(movies);
         console.log(trendingMovies);
-        for(let i = 0; i < movies.length; i++) {
-           console.log(movies[i].title);
-        }
-        trendingMovies.forEach((movie => {
-            console.log("trend: " + movie);
-            console.log(movie.title);
-        }))
-        movies.forEach((movie => {
-            console.log("movie var: " + movie);
-            console.log(movie.title);
-        }))
+        console.log(trendingMovies.trendingMovies);
+        console.log(trendingMovies.trendingMovies[1].title);
     }
 
     return (
