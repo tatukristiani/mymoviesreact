@@ -21,7 +21,6 @@ const Home = ({trendingMovies}) => {
     // Handles the page click on the paginate.
     const handlePageClick = (data) => {
         setCurrentPage(data.selected + 1);
-        setLoading(true);
     }
 
     const indexOfLastMovie = currentPage * moviesPerPage;
@@ -44,18 +43,18 @@ const Home = ({trendingMovies}) => {
             switch (loadingText) {
                 case "Loading.":
                     setLoadingText("Loading..");
-                    setTimeout(500);
+                    setTimeout(1000);
                     break;
                 case "Loading..":
                     setLoadingText("Loading...");
-                    setTimeout(500);
+                    setTimeout(1000);
                     break;
                 case "Loading...":
                     setLoadingText("Loading.");
-                    setTimeout(500);
+                    setTimeout(1000);
                 default:
                     setLoadingText("Loading.");
-                    setTimeout(500);
+                    setTimeout(1000);
             }
         }
     },[loadingText])
