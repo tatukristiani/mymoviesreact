@@ -50,7 +50,7 @@ const Movies = ({actionMovies, docMovies, romanceMovies, horrorMovies, comedyMov
 
     useEffect(() => {
         checkGenre();
-    },[actionMovies,docMovies,romanceMovies,horrorMovies,comedyMovies])
+    },[actionMovies,docMovies,romanceMovies,horrorMovies,comedyMovies, code])
 
     /*
     // If code, codeValid or page changes fetch new movies.

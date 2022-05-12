@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import axios from "../api/axios";
 import "../styles/Home.css";
 import Movie from "./Movie";
-import requests from "../utility/request";
 import '../styles/Movies.css';
 import Paginate from "./Paginate";
 
@@ -13,10 +11,10 @@ import Paginate from "./Paginate";
  */
 const Home = ({trendingMovies}) => {
     const [movies,setMovies] = useState([]); // Movies to be shown. If there are no movies then no movies are shown.
-    const [currentPage, setCurrentPage] = useState(1); // Currentpage, using paginate.
+    const [currentPage, setCurrentPage] = useState(1); // Current page, using paginate.
     const [moviesPerPage, setMoviesPerPage] = useState(28);
     const [loading, setLoading] = useState(true);
-    const [loadingText, setLoadingText] = useState("Loading.");
+    const [loadingText, setLoadingText] = useState("Loading...");
 
     // Handles the page click on the paginate.
     const handlePageClick = (data) => {
@@ -37,27 +35,6 @@ const Home = ({trendingMovies}) => {
             setLoading(false);
         }
     }, [movies])
-
-    useEffect(() => {
-        if(movies.length < 1) {
-            switch (loadingText) {
-                case "Loading.":
-                    setLoadingText("Loading..");
-                    setTimeout(1000);
-                    break;
-                case "Loading..":
-                    setLoadingText("Loading...");
-                    setTimeout(1000);
-                    break;
-                case "Loading...":
-                    setLoadingText("Loading.");
-                    setTimeout(1000);
-                default:
-                    setLoadingText("Loading.");
-                    setTimeout(1000);
-            }
-        }
-    },[loadingText])
 
     return (
         <>
