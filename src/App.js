@@ -38,6 +38,7 @@ const App = () => {
     const [comedyMovies, setComedyMovies] = useState([]);
     const [horrorMovies, setHorrorMovies] = useState([]);
     const [trendingMovies, setTrendingMovies] = useState([]);
+    const arr = [1,2,3,4,5];
 
     useEffect(() => {
         console.log("Fetching trending");
@@ -62,6 +63,7 @@ const App = () => {
                 return movie;
             }
         })
+        console.log("Movies first: " + movies);
         return movies;
     }
 
@@ -128,7 +130,7 @@ const App = () => {
                         </Route>
                         <Route path='/'>
                             <GenreBrowser />
-                            <Home trendingMovies={trendingMovies} />
+                            <Home trendingMovies={trendingMovies} arr={arr} />
                         </Route>
                     </Switch>
                 </div>
