@@ -50,10 +50,10 @@ const App = () => {
         console.log("Movies fetched!");
     },[]);
 
-    function fetchMovies(url) {
+    async function fetchMovies(url) {
         let movies = [];
         for(let page = 1; page <= 50; page++) {
-            let request = axios.get(url + page);
+            let request = await axios.get(url + page);
             // CHANGE!! Filter removed from inside of loop to outside.
             Array.prototype.push.apply(movies, request.data);
         }
