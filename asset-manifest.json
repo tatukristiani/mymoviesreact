@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/mymoviesreact/static/css/main.33a08c95.css",
-    "main.js": "/mymoviesreact/static/js/main.90171640.js",
+    "main.js": "/mymoviesreact/static/js/main.cc5b7c63.js",
     "static/media/TMDB_Logo.svg": "/mymoviesreact/static/media/TMDB_Logo.bb8aa703cb92c9aa31fc1e0b17850ed9.svg",
     "index.html": "/mymoviesreact/index.html",
     "main.33a08c95.css.map": "/mymoviesreact/static/css/main.33a08c95.css.map",
-    "main.90171640.js.map": "/mymoviesreact/static/js/main.90171640.js.map"
+    "main.cc5b7c63.js.map": "/mymoviesreact/static/js/main.cc5b7c63.js.map"
   },
   "entrypoints": [
     "static/css/main.33a08c95.css",
-    "static/js/main.90171640.js"
+    "static/js/main.cc5b7c63.js"
   ]
 }
