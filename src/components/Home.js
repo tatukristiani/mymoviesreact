@@ -11,7 +11,7 @@ import Paginate from "./Paginate";
  * @returns {JSX.Element} Home component with trending movies.
  * @constructor Creates the Home component
  */
-const Home = ({trendingMovies}) => {
+const Home = (trendingMovies) => {
     const [movies,setMovies] = useState([]); // Movies to be shown. If there are no movies then no movies are shown.
     const [currentPage, setCurrentPage] = useState(1); // Currentpage, using paginate.
 
@@ -68,8 +68,7 @@ const Home = ({trendingMovies}) => {
                             <Movie key={movie.id} movie={movie} databaseData={false}/>
                         )))}
                         */}
-                        <button onClick={() => testMovie()}>test movie</button>
-                        <button onClick={() => testMovie}>test movie 2</button>
+                        <button onClick={testMovie}>test movie 2</button>
                     </div>
                     <div className='paginate-container'>
                         <Paginate onPageChange={handlePageClick}/>
