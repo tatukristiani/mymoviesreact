@@ -14,12 +14,14 @@ import Paginate from "./Paginate";
 const Home = ({trendingMovies}) => {
     const [movies,setMovies] = useState([]); // Movies to be shown. If there are no movies then no movies are shown.
     const [currentPage, setCurrentPage] = useState(1); // Currentpage, using paginate.
-    const [moviesPerPage, setMoviesPerPage] = useState(20);
+    const [moviesPerPage, setMoviesPerPage] = useState(28);
     const [loading, setLoading] = useState(true);
+    const [loadingText, setLoadingText] = useState("Loading.");
 
     // Handles the page click on the paginate.
     const handlePageClick = (data) => {
         setCurrentPage(data.selected + 1);
+        setLoading(true);
     }
 
     const indexOfLastMovie = currentPage * moviesPerPage;
@@ -37,39 +39,22 @@ const Home = ({trendingMovies}) => {
         }
     }, [movies])
 
-    /* OLD WAY TO RENDER MOVIES!
-    // When page is changes, fetches new movies with the page number from trending movies.
     useEffect(() => {
-        const abortCont = new AbortController();
-
-        // Fetch the movies with the given page and filters the movies so that if they don't have a poster/image they won't be included.
-        async function fetchData(page) {
-            const request = await axios.get(requests.fetchTrending + page, {signal: abortCont.signal});
-            let filterMovies = request.data.filter(movie => {
-                if(movie.poster_path !== null) {
-                    return movie;
-                }
-            })
-            setMovies(filterMovies);
-            return request.data;
-        }
-
-        fetchData(currentPage).then(res => console.log(res)).catch(err => {
-            if (err.name === "AbortError") {
-                console.log("Fetch aborted");
-            } else {
-                console.log(err);
+        if(movies.length < 1) {
+            switch (loadingText) {
+                case "Loading.":
+                    setLoadingText("Loading..");
+                    break;
+                case "Loading..":
+                    setLoadingText("Loading...");
+                    break;
+                case "Loading...":
+                    setLoadingText("Loading.");
+                default:
+                    setLoadingText("Loading.");
             }
-        });
-
-        return () => abortCont.abort();
-    }, [currentPage]);
-*/
-
-    const testMovie = () => {
-        console.log("Test log");
-        console.log(movies);
-    }
+        }
+    })
 
     return (
         <>
@@ -79,7 +64,6 @@ const Home = ({trendingMovies}) => {
                         {currentMovies.map((movie => (
                             <Movie key={movie.id} movie={movie} databaseData={false}/>
                         )))}
-                        <button onClick={testMovie}>test movie 2</button>
                     </div>
                     <div className='paginate-container'>
                         <Paginate onPageChange={handlePageClick}/>
@@ -91,11 +75,6 @@ const Home = ({trendingMovies}) => {
                 </div>
             )
             }
-            {/*
-                <div className='movies-not-found'>
-                    <p>Sorry... no movies found with the given genre code.</p>
-                </div>
-                */}
         </>
     );
 };
