@@ -55,7 +55,7 @@ const App = () => {
         for(let page = 1; page <= 50; page++) {
             let request = await axios.get(url + page);
             // CHANGE!! Filter removed from inside of loop to outside.
-            movies.push.apply(movies, request.data);
+            Array.prototype.push.apply(movies, request.data);
         }
         movies = movies.filter(movie => {
             if (movie.poster_path !== null) {

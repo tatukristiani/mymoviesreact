@@ -22,14 +22,15 @@ const Home = (trendingMovies) => {
     }
 
     useEffect(() => {
-        if(movies == null) {
-            console.log("movies is null");
-        }
         setLoading(true);
         setMovies(trendingMovies);
-        setLoading(false);
-    }, [])
+    }, [trendingMovies])
 
+    useEffect(() => {
+        if(movies != null && movies.length > 1) {
+            setLoading(false);
+        }
+    },[movies])
     /* OLD WAY TO RENDER MOVIES!
     // When page is changes, fetches new movies with the page number from trending movies.
     useEffect(() => {
@@ -76,9 +77,6 @@ const Home = (trendingMovies) => {
             console.log(movie.title);
         }))
     }
-    if(loading) {
-        return <h2>Loading...</h2>;
-    }
 
     return (
         <>
@@ -91,7 +89,6 @@ const Home = (trendingMovies) => {
                         )))}
                         */}
                         <button onClick={testMovie}>test movie 2</button>
-                        <button onClick={() => console.log("test click")}>Test</button>
                     </div>
                     <div className='paginate-container'>
                         <Paginate onPageChange={handlePageClick}/>
