@@ -54,6 +54,7 @@ const Home = (trendingMovies) => {
 */
 
     const testMovie = () => {
+        console.log("Test log");
         for(let i = 0; i < movies.length; i++) {
            console.log(movies[i].title);
         }
@@ -69,6 +70,7 @@ const Home = (trendingMovies) => {
                         )))}
                         */}
                         <button onClick={testMovie}>test movie 2</button>
+                        <button onClick={() => console.log("test click")}>Test</button>
                     </div>
                     <div className='paginate-container'>
                         <Paginate onPageChange={handlePageClick}/>
