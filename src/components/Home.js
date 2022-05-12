@@ -58,6 +58,8 @@ const Home = (trendingMovies) => {
         console.log(movies.length);
         console.log(trendingMovies);
         console.log(trendingMovies.length);
+        console.log(trendingMovies[0]);
+        console.log(trendingMovies[0].title);
         for(let i = 0; i < movies.length; i++) {
            console.log(movies[i].title);
         }
