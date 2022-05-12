@@ -14,7 +14,7 @@ const Paginate = ({onPageChange}) => {
             previousLabel={'<'}
             nextLabel={'>'}
             breakLabel={'...'}
-            pageCount={50}
+            pageCount={20}
             marginPagesDisplayed={3}
             pageRangeDisplayed={4}
             onPageChange={onPageChange}

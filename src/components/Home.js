@@ -75,7 +75,7 @@ const Home = ({trendingMovies}) => {
                 </div>
             ) : (
                 <div className='movies-not-found'>
-                    <p>Loading...</p>
+                    <p>{loadingText}</p>
                 </div>
             )
             }

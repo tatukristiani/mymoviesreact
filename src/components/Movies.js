@@ -22,7 +22,6 @@ const Movies = ({actionMovies, docMovies, romanceMovies, horrorMovies, comedyMov
     const [currentPage, setCurrentPage] = useState(1);
     const [moviesPerPage, setMoviesPerPage] = useState(28);
 
-
     const indexOfLastMovie = currentPage * moviesPerPage;
     const indexOfFirstPost = indexOfLastMovie - moviesPerPage;
     const currentMovies = movies.slice(indexOfFirstPost, indexOfLastMovie);
@@ -31,33 +30,22 @@ const Movies = ({actionMovies, docMovies, romanceMovies, horrorMovies, comedyMov
         setCurrentPage(data.selected + 1);
     }
 
-
     const checkGenre = () => {
-        switch(code) {
-            case Genres.ACTION:
-                setCodeValid(true);
-                setMovies(actionMovies);
-                break;
-            case Genres.DOCS:
-                setCodeValid(true);
-                setMovies(docMovies);
-                break;
-            case Genres.ROMANCE:
-                setCodeValid(true);
-                setMovies(romanceMovies);
-                break;
-            case Genres.COMEDY:
-                setCodeValid(true);
-                setMovies(comedyMovies);
-                break;
-            case Genres.HORROR:
-                setCodeValid(true);
-                setMovies(horrorMovies);
-                break;
-            default:
-                setCodeValid(false);
-                break;
+        if(code == Genres.ACTION) {
+            setMovies(actionMovies);
+        } else if(code == Genres.HORROR) {
+            setMovies(horrorMovies);
+        } else if(code == Genres.ROMANCE) {
+            setMovies(romanceMovies);
+        } else if(code == Genres.COMEDY) {
+            setMovies(comedyMovies);
+        } else if(code == Genres.DOCS) {
+            setMovies(docMovies);
+        } else {
+            setCodeValid(false);
+            return;
         }
+        setCodeValid(true);
     }
 
     useEffect(() => {
