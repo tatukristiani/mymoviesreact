@@ -98,7 +98,7 @@ const ForgotPassword = () => {
         if(!resetActive && response !== '') {
             setTimeout(() => {
                 setResetActive(true);
-            }, 5000);
+            }, 10000);
         }
     }, [resetActive, response])
 
