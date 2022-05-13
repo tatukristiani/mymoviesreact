@@ -1,5 +1,6 @@
 import ReactPaginate from "react-paginate";
 import '../styles/Paginate.css';
+import React from "react";
 
 /**
  * Paginate for the movies.

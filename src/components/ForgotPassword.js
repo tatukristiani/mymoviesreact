@@ -4,6 +4,7 @@ import requests from "../utility/request";
 import '../styles/ForgotPassword.css';
 import {Button} from "./Button";
 import validateEmail from "../utility/ValidateEmail";
+import React from 'react';
 
 /**
  * ForgotPassword component, used to reset the password of the user. Sends an email to the user.

@@ -2,6 +2,7 @@ import Genres from "../utility/Genres";
 import {Link, useParams} from "react-router-dom";
 import '../styles/GenreBrowser.css';
 import {useEffect, useState} from "react";
+import React from 'react';
 
 /**
  * Navigation for selecting movies by genre.
