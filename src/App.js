@@ -22,7 +22,7 @@ import UpdatePassword from "./components/UpdatePassword";
 import ProfilePage from "./components/ProfilePage";
 import Genres from "./utility/Genres";
 
-import 'dotenv/config';
+require('dotenv').config();
 
 /**
  * Root component of the application.
