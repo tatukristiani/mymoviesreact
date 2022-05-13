@@ -50,5 +50,10 @@
   },
   "devDependencies": {
     "gh-pages": "^3.2.3"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }
