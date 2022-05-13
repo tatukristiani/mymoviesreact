@@ -15,7 +15,7 @@ const WAIT_STRING = 'You will be redirected to login in a few seconds.';
  * @returns {JSX.Element} Elements with input fields for password and confirm password.
  * @constructor Creates the UpdatePassword component.
  */
-/*
+
 const UpdatePassword = () => {
     const {token} = useParams(); // This token tells us which user has sent this request.
     const [password, setPassword] = useState('');
@@ -24,7 +24,7 @@ const UpdatePassword = () => {
     const [response, setResponse] = useState('');
     const history = useHistory();
 
-/*
+
     // Sends the request to the API. If the password is valid and the token is valid. Then the request will be a success.
     const sendUpdatedPassword = async () => {
         if(password === confirmPassword && validateCredential(password)) {
@@ -91,4 +91,3 @@ const UpdatePassword = () => {
 }
 
 export default UpdatePassword;
- */
