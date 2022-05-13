@@ -95,7 +95,7 @@ const ForgotPassword = () => {
     }
 
     useEffect(() => {
-        if(!resetActive && response !== "") {
+        if(!resetActive && response !== '') {
             setTimeout(() => {
                 setResetActive(true);
             }, 5000);
