@@ -22,7 +22,6 @@ import UpdatePassword from "./components/UpdatePassword";
 import ProfilePage from "./components/ProfilePage";
 import Genres from "./utility/Genres";
 
-const BASE_URL = 'https://tatukristiani.github.io/mymoviesreact';
 /**
  * Root component of the application.
  * @returns {JSX.Element} The entire website.
@@ -97,37 +96,37 @@ const App = () => {
                 <Navbar />
                 <div className='content'>
                     <Switch>
-                        <Route exact path={BASE_URL + '/profile'}>
+                        <Route exact path='/profile'>
                             <ProfilePage />
                         </Route>
-                        <Route exact path={BASE_URL + '/movies'}>
+                        <Route exact path='/movies'>
                             <MyMovies />
                         </Route>
-                        <Route exact path={BASE_URL + '/movies/:id'}>
+                        <Route exact path='/movies/:id'>
                             <MovieDetails />
                         </Route>
-                        <Route exact path={BASE_URL + '/login'}>
+                        <Route exact path='/login'>
                             <Login />
                         </Route>
-                        <Route exact path={BASE_URL + '/search'}>
+                        <Route exact path='/search'>
                             <Search />
                         </Route>
-                        <Route exact path={BASE_URL + '/register'}>
+                        <Route exact path='/register'>
                             <Register/>
                         </Route>
-                        <Route exact path={BASE_URL + '/forgot-password'}>
+                        <Route exact path='/forgot-password'>
                             <ForgotPassword />
                         </Route>
-                        <Route path={BASE_URL + '/update-password/:token'}>
+                        <Route path='/update-password/:token'>
                             <UpdatePassword />
                         </Route>
-                        <Route exact path={BASE_URL + '/movies/genre/:code'}>
+                        <Route exact path='/movies/genre/:code'>
                             <GenreBrowser />
                             <Movies actionMovies={actionMovies} docMovies={docMovies} romanceMovies={romanceMovies}
                                     horrorMovies={horrorMovies} comedyMovies={comedyMovies}
                             />
                         </Route>
-                        <Route path={BASE_URL + '/'}>
+                        <Route path='/'>
                             <GenreBrowser />
                             <Home trendingMovies={trendingMovies} />
                         </Route>
