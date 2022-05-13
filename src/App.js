@@ -117,7 +117,7 @@ const App = () => {
                         <Route exact path='/forgot-password'>
                             <ForgotPassword />
                         </Route>
-                        <Route exact path='/update-password/:token'>
+                        <Route path='/update-password/:token'>
                             <UpdatePassword />
                         </Route>
                         <Route exact path='/movies/genre/:code'>
