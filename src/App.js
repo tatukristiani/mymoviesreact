@@ -22,6 +22,9 @@ import UpdatePassword from "./components/UpdatePassword";
 import ProfilePage from "./components/ProfilePage";
 import Genres from "./utility/Genres";
 
+import 'dotenv/config';
+require('dotenv').config();
+
 /**
  * Root component of the application.
  * @returns {JSX.Element} The entire website.
@@ -96,37 +99,37 @@ const App = () => {
                 <Navbar />
                 <div className='content'>
                     <Switch>
-                        <Route exact path='/profile'>
+                        <Route exact path={process.env.REACT_APP_PUBLIC_URL + '/profile'}>
                             <ProfilePage />
                         </Route>
-                        <Route exact path='/movies'>
+                        <Route exact path={process.env.REACT_APP_PUBLIC_URL + '/movies'}>
                             <MyMovies />
                         </Route>
-                        <Route exact path='/movies/:id'>
+                        <Route exact path={process.env.REACT_APP_PUBLIC_URL + '/movies/:id'}>
                             <MovieDetails />
                         </Route>
-                        <Route exact path='/login'>
+                        <Route exact path={process.env.REACT_APP_PUBLIC_URL + '/login'}>
                             <Login />
                         </Route>
-                        <Route exact path='/search'>
+                        <Route exact path={process.env.REACT_APP_PUBLIC_URL + '/search'}>
                             <Search />
                         </Route>
-                        <Route exact path='/register'>
+                        <Route exact path={process.env.REACT_APP_PUBLIC_URL + '/register'}>
                             <Register/>
                         </Route>
-                        <Route exact path='/forgot-password'>
+                        <Route exact path={process.env.REACT_APP_PUBLIC_URL + '/forgot-password'}>
                             <ForgotPassword />
                         </Route>
-                        <Route path='/update-password/:token'>
+                        <Route exact path={process.env.REACT_APP_PUBLIC_URL + '/update-password/:token'}>
                             <UpdatePassword />
                         </Route>
-                        <Route exact path='/movies/genre/:code'>
+                        <Route exact path={process.env.REACT_APP_PUBLIC_URL + '/movies/genre/:code'}>
                             <GenreBrowser />
                             <Movies actionMovies={actionMovies} docMovies={docMovies} romanceMovies={romanceMovies}
                                     horrorMovies={horrorMovies} comedyMovies={comedyMovies}
                             />
                         </Route>
-                        <Route path='/'>
+                        <Route path={process.env.REACT_APP_PUBLIC_URL + '/'}>
                             <GenreBrowser />
                             <Home trendingMovies={trendingMovies} />
                         </Route>
