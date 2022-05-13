@@ -25,8 +25,6 @@ const ForgotPassword = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [token, setToken] = useState('');
-    const [validToken, setValidToken] = useState(true);
-    const [updateError, setUpdateError] = useState(false);
     const [updateResponse, setUpdateResponse] = useState('');
     const [validPassword, setValidPassword] = useState(true);
     const [validConfirmPassword, setValidConfirmPassword] = useState(true);
@@ -51,7 +49,6 @@ const ForgotPassword = () => {
                 headers: {'Content-Type': 'application/json'}
             });
             setResponse(results.data.msg);
-            setTimeout(4000);
         } else {
             setError(true);
         }
@@ -98,9 +95,11 @@ const ForgotPassword = () => {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            setResetActive(true);
-        }, 5000);
+        if(!resetActive && !response.equals('')) {
+            setTimeout(() => {
+                setResetActive(true);
+            }, 5000);
+        }
     }, [response])
 
     return(
