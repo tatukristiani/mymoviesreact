@@ -18,7 +18,6 @@ import axios from "./api/axios";
 import Movies from "./components/Movies";
 import GenreBrowser from "./components/GenreBrowser";
 import ForgotPassword from "./components/ForgotPassword";
-import UpdatePassword from "./components/UpdatePassword";
 import ProfilePage from "./components/ProfilePage";
 import Genres from "./utility/Genres";
 
@@ -116,13 +115,6 @@ const App = () => {
                         </Route>
                         <Route exact path='/forgot-password'>
                             <ForgotPassword />
-                        </Route>
-<<<<<<< HEAD
-                        <Route exact path={process.env.REACT_APP_PUBLIC_URL + '/update-password/:token'}>
-=======
-                        <Route path='/update-password/:token'>
->>>>>>> d64c065bd78c83cb907c4f3cf07234c9be4eb847
-                            <UpdatePassword />
                         </Route>
                         <Route exact path='/movies/genre/:code'>
                             <GenreBrowser />
