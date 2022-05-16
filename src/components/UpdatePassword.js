@@ -15,6 +15,7 @@ const WAIT_STRING = 'You will be redirected to login in a few seconds.';
  * @returns {JSX.Element} Elements with input fields for password and confirm password.
  * @constructor Creates the UpdatePassword component.
  */
+
 const UpdatePassword = () => {
     const {token} = useParams(); // This token tells us which user has sent this request.
     const [password, setPassword] = useState('');
