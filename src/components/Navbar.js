@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import '../styles/Navbar.css';
@@ -19,6 +19,7 @@ const Navbar = () => {
     const closeMobileMenu = () => setClick(false);
 
     // When windows width goes to 960px or less, disables the login/logout button.
+    // NOTE! Only works when window is rezized
     const showButton = () => {
         if (window.innerWidth <= 960) {
             setButton(false);
@@ -32,6 +33,15 @@ const Navbar = () => {
         setSavedUser(null);
         closeMobileMenu();
     }
+
+    // Disables the login button when on smaller screen.
+    useEffect(() => {
+        if(window.innerWidth <= 960) {
+            setButton(false);
+        } else {
+            setButton(true);
+        }
+    },[])
 
     window.addEventListener('resize', showButton);
 
