@@ -2,7 +2,7 @@ import React, {useEffect, useState, useRef} from 'react';
 import axios from '../api/axios';
 import '../styles/Login.css';
 import '../styles/Register.css';
-import { useHistory } from "react-router-dom";
+import { useNavigate as useHistory } from "react-router-dom";
 import {Link} from "react-router-dom";
 import requests from "../utility/request";
 import validateEmail from "../utility/ValidateEmail";

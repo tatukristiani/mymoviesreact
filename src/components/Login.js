@@ -1,9 +1,9 @@
-import React, {useEffect, useState, useRef, useContext} from 'react';
-import {useHistory} from "react-router-dom";
+import React, { useEffect, useState, useRef, useContext } from 'react';
+import { useNavigate as useHistory } from "react-router-dom";
 import axios from '../api/axios';
 import '../styles/Login.css';
-import {Link} from "react-router-dom";
-import {UserContext} from "../utility/UserContext";
+import { Link } from "react-router-dom";
+import { UserContext } from "../utility/UserContext";
 import requests from "../utility/request";
 import validateCredential from "../utility/ValidateCredentials";
 import validatePassword from "../utility/validatePassword";
@@ -17,7 +17,7 @@ const PASS_ERROR = "Invalid password format!";
  * @constructor Creates the login "form"
  */
 const Login = () => {
-    const {setSavedUser} = useContext(UserContext); // Used to set the user to the context that is available on all of the component in the application.
+    const { setSavedUser } = useContext(UserContext); // Used to set the user to the context that is available on all of the component in the application.
     const history = useHistory(); // Used to push user to home page after successfully login.
     const userRef = useRef();
     const errRef = useRef();
@@ -44,12 +44,12 @@ const Login = () => {
         const validPass = validatePassword(pwd);
 
         // If username and password are valid continue.
-        if(validUsername && validPass) {
+        if (validUsername && validPass) {
             setPending(true);
             try {
                 await axios.post(requests.login, account,
                     {
-                        headers: {'Content-Type': 'application/json'}
+                        headers: { 'Content-Type': 'application/json' }
                     });
                 setUser('');
                 setPwd('');
@@ -70,10 +70,10 @@ const Login = () => {
                 errRef.current.focus();
             }
             setPending(false);
-        } else if(!validUsername && !validPass) { // Both invalid.
+        } else if (!validUsername && !validPass) { // Both invalid.
             setErrUser(USER_ERROR);
             setErrorPass(PASS_ERROR);
-        } else if(validUsername){ // Pass invalid
+        } else if (validUsername) { // Pass invalid
             setErrorPass(PASS_ERROR);
         } else { // Username invalid
             setErrUser(USER_ERROR);
@@ -106,7 +106,7 @@ const Login = () => {
         <>
             <form autoComplete='off' className='form' onSubmit={handleSubmit}>
                 <p ref={errRef} className={errMsg ? "error-message" : "off-screen"}
-                   aria-live="assertive">{errMsg}</p>
+                    aria-live="assertive">{errMsg}</p>
                 <div className='control'>
                     <h1>
                         Sign In
@@ -138,11 +138,11 @@ const Login = () => {
                 </div>
                 <div className='control block-cube block-input'>
                     <input placeholder='Password'
-                           type="password"
-                           id="password"
-                           onChange={(e) => setPwd(e.target.value)}
-                           value={pwd}
-                           required
+                        type="password"
+                        id="password"
+                        onChange={(e) => setPwd(e.target.value)}
+                        value={pwd}
+                        required
                     />
                     <div className='bg-top'>
                         <div className='bg-inner'></div>

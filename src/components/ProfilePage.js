@@ -4,7 +4,7 @@ import requests from "../utility/request";
 import axios from '../api/axios';
 import {Button} from "./Button";
 import '../styles/ProfilePage.css';
-import {useHistory} from "react-router-dom";
+import {useNavigate as useHistory} from "react-router-dom";
 import validateEmail from "../utility/ValidateEmail";
 import validateCredential from "../utility/ValidateCredentials";
 
