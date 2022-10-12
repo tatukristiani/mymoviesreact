@@ -95,37 +95,29 @@ const App = () => {
             <Navbar />
             <div className='content'>
               <Routes>
-                <Route exact path='/profile'>
-                  <ProfilePage />
-                </Route>
-                <Route exact path='/movies'>
-                  <MyMovies />
-                </Route>
-                <Route exact path='/movies/:id'>
-                  <MovieDetails />
-                </Route>
-                <Route exact path='/login'>
-                  <Login />
-                </Route>
-                <Route exact path='/search'>
-                  <Search />
-                </Route>
-                <Route exact path='/register'>
-                  <Register />
-                </Route>
-                <Route exact path='/forgot-password'>
-                  <ForgotPassword />
-                </Route>
-                <Route exact path='/movies/genre/:code'>
-                  <GenreBrowser />
-                  <Movies actionMovies={actionMovies} docMovies={docMovies} romanceMovies={romanceMovies}
-                    horrorMovies={horrorMovies} comedyMovies={comedyMovies}
-                  />
-                </Route>
-                <Route path='/'>
-                  <GenreBrowser />
-                  <Home trendingMovies={trendingMovies} />
-                </Route>
+                <Route exact path='/profile' element={<ProfilePage />} />
+                <Route exact path='/movies' element={<MyMovies />} />
+                <Route exact path='/movies/:id' element={<MovieDetails />} />
+                <Route exact path='/login' element={<Login />} />
+                <Route exact path='/search' element={<Search />} />
+                <Route exact path='/register' element={<Register />} />
+                <Route exact path='/forgot-password' element={<ForgotPassword />} />
+                <Route exact path='/movies/genre/:code' element=
+                  {
+                    <>
+                      <GenreBrowser />
+                      <Movies actionMovies={actionMovies} docMovies={docMovies} romanceMovies={romanceMovies}
+                        horrorMovies={horrorMovies} comedyMovies={comedyMovies}
+                      />
+                    </>
+                  } />
+                <Route path='/' element=
+                  {
+                    <>
+                      <GenreBrowser />
+                      <Home trendingMovies={trendingMovies} />
+                    </>
+                  } />
               </Routes>
             </div>
             <Footer />
