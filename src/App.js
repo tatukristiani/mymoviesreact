@@ -30,40 +30,6 @@ const App = () => {
   const [savedUser, setSavedUser] = useState(null);
   const [savedUserMovies, setSavedUserMovies] = useState([]);
 
-  // Testing for speeding up the browsing.
-  const [actionMovies, setActionMovies] = useState([]);
-  const [romanceMovies, setRomanceMovies] = useState([]);
-  const [docMovies, setDocMovies] = useState([]);
-  const [comedyMovies, setComedyMovies] = useState([]);
-  const [horrorMovies, setHorrorMovies] = useState([]);
-  const [trendingMovies, setTrendingMovies] = useState([]);
-
-  useEffect(() => {
-    console.log("Fetching trending");
-    fetchMovies(requests.fetchTrending).then(response => setTrendingMovies(response));
-    fetchMovies(requests.fetchGenre + Genres.HORROR + "&page=").then(response => setHorrorMovies(response));
-    fetchMovies(requests.fetchGenre + Genres.ACTION + "&page=").then(response => setActionMovies(response));
-    fetchMovies(requests.fetchGenre + Genres.COMEDY + "&page=").then(response => setComedyMovies(response));
-    fetchMovies(requests.fetchGenre + Genres.ROMANCE + "&page=").then(response => setRomanceMovies(response));
-    fetchMovies(requests.fetchGenre + Genres.DOCS + "&page=").then(response => setDocMovies(response));
-    console.log("Movies fetched!");
-  }, []);
-
-  async function fetchMovies(url) {
-    let movies = [];
-    for (let page = 1; page <= 50; page++) {
-      let request = await axios.get(url + page);
-      // CHANGE!! Filter removed from inside of loop to outside.
-      Array.prototype.push.apply(movies, request.data);
-    }
-    movies = movies.filter(movie => {
-      if (movie.poster_path !== null) {
-        return movie;
-      }
-    })
-    return movies;
-  }
-
   // Effect used when savedUser is changed. Fetches the currently logged-in users movies and saves them to savedUserMovies.
   useEffect(() => {
     const abortCont = new AbortController();
@@ -106,16 +72,14 @@ const App = () => {
                   {
                     <>
                       <GenreBrowser />
-                      <Movies actionMovies={actionMovies} docMovies={docMovies} romanceMovies={romanceMovies}
-                        horrorMovies={horrorMovies} comedyMovies={comedyMovies}
-                      />
+                      <Movies />
                     </>
                   } />
                 <Route path='/' element=
                   {
                     <>
                       <GenreBrowser />
-                      <Home trendingMovies={trendingMovies} />
+                      <Home />
                     </>
                   } />
               </Routes>
