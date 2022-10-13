@@ -8,11 +8,7 @@ import axios from "../api/axios";
 export default async function FetchMovies(url, page) {
     let movies = [];
     let request = await axios.get(url + page);
-    movies = request.data.filter(movie => {
-        if (movie.poster_path !== null) {
-            return movie;
-        }
-    })
+    movies = request.data;
 
     return movies;
 }
