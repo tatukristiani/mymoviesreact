@@ -1,8 +1,7 @@
-import React, {useContext, useEffect, useState} from 'react';
-import POSTER_URL from "../api/poster";
-import {Link} from "react-router-dom";
-import {UserMoviesContext} from "../utility/UserMoviesContext";
-
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
+import { UserMoviesContext } from "../utility/UserMoviesContext";
+import { IKImage } from 'imagekitio-react';
 
 /**
  * Movie component. Specifically used to create a Link to MovieDetails page & image element of the movie.
@@ -11,37 +10,49 @@ import {UserMoviesContext} from "../utility/UserMoviesContext";
  * @returns {JSX.Element} Link element with img element inside of it.
  * @constructor Creates the Movie component with the given movie and databaseData value.
  */
-const Movie = ({movie, databaseData}) => {
-    const {savedUserMovies} = useContext(UserMoviesContext); // Users movies from database.
+const Movie = ({ movie, databaseData }) => {
+    const { savedUserMovies } = useContext(UserMoviesContext); // Users movies from database.
     const [watched, setWatched] = useState(false); // Determines if the movie is on the users database.
 
 
     // Goes through all the movies from the database and if the movie given to this Movie element is in there, sets the state of watched to true.
     useEffect(() => {
         savedUserMovies.forEach(m => {
-            if((movie.title === m.title && movie.tmdbid === m.tmdbid) || (movie.title === m.title && movie.id === m.tmdbid)) {
+            if ((movie.title === m.title && movie.tmdbid === m.tmdbid) || (movie.title === m.title && movie.id === m.tmdbid)) {
                 setWatched(true);
             }
         })
     })
 
-    return(
+    return (
         <>
             {databaseData ? (
-            <Link to={`/movies/${movie.tmdbid}`}>{
-                <img key={movie.id}
-                     className={watched ? "movie-image-seen" : "movie-image"}
-                     src={`${POSTER_URL}${movie.poster_path}`}
-                     alt={movie.title}
-                />
-            }</Link>
+                <Link to={`/movies/${movie.tmdbid}`}>{
+                    <IKImage
+                        className={watched ? "movie-image-seen" : "movie-image"}
+                        urlEndpoint='https://ik.imagekit.io/mymovies'
+                        path={`${movie.poster_path}`}
+                        transformation={[{
+                            height: 450,
+                            quality: 70
+                        }]}
+                        alt={movie.title}
+                        lqip={{ active: true }}
+                    />
+                }</Link>
 
             ) : (
                 <Link to={`/movies/${movie.id}`}>{
-                    <img key={movie.id}
-                         className={watched ? "movie-image-seen" : "movie-image"}
-                         src={`${POSTER_URL}${movie.poster_path}`}
-                         alt={movie.title}
+                    <IKImage
+                        className={watched ? "movie-image-seen" : "movie-image"}
+                        urlEndpoint='https://ik.imagekit.io/mymovies'
+                        path={`${movie.poster_path}`}
+                        transformation={[{
+                            height: 450,
+                            quality: 70
+                        }]}
+                            alt={movie.title}
+                            lqip={{ active: true }}
                     />
                 }</Link>
             )}

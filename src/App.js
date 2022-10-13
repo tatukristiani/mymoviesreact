@@ -19,7 +19,6 @@ import Movies from "./components/Movies";
 import GenreBrowser from "./components/GenreBrowser";
 import ForgotPassword from "./components/ForgotPassword";
 import ProfilePage from "./components/ProfilePage";
-import Genres from "./utility/Genres";
 
 /**
  * Root component of the application.

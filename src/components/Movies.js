@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from "../api/axios";
 import "../styles/Home.css";
 import Movie from "./Movie";
 import { useParams } from "react-router-dom";
 import requests from "../utility/request";
-import Genres from "../utility/Genres";
 import '../styles/Movies.css';
 import Paginate from "./Paginate";
 import FetchMovies from '../utility/FetchMovies';
@@ -35,7 +33,6 @@ const Movies = () => {
 
     return (
         <>
-
             <div>
                 <div className="home-container">
                     {movies.map((movie => (
@@ -46,7 +43,6 @@ const Movies = () => {
                     <Paginate onPageChange={handlePageClick} />
                 </div>
             </div>
-
         </>
     );
 };
