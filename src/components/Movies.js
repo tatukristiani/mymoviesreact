@@ -6,6 +6,7 @@ import requests from "../utility/request";
 import '../styles/Movies.css';
 import Paginate from "./Paginate";
 import FetchMovies from '../utility/FetchMovies';
+import Genres from '../utility/Genres';
 
 /**
  * List of movies to be shown at page. This is mostly used all around but works only when searching with genre.
@@ -23,13 +24,24 @@ const Movies = () => {
     }
 
     useEffect(() => {
-        FetchMovies(requests.fetchGenre + code + "&page=", currentPage).then(res => setMovies(res));
+        FetchMovies(requests.fetchGenre + code + "&page=", currentPage)
+            .then(res => {
+                setMovies(res);
+            });
     }, [currentPage])
 
     useEffect(() => {
-        FetchMovies(requests.fetchGenre + code + "&page=", 1).then(res => setMovies(res));
-    }, [code])
+        FetchMovies(requests.fetchGenre + code + "&page=", 1)
+            .then(res => {
+                setMovies(res);
+            });
 
+        if (!window.location.hash) {
+            console.log("loaded");
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
+    }, [code])
 
     return (
         <>
